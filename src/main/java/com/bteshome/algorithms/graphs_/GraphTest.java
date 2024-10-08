@@ -1,6 +1,7 @@
 package com.bteshome.algorithms.graphs_;
 
 import com.bteshome.algorithms.graphs_.bfs.BFSAlgorithms1;
+import com.bteshome.algorithms.graphs_.bfs.BFSAlgorithms2;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms1;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms2;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms3;
@@ -44,6 +45,7 @@ public class GraphTest {
         var root = new DFSAlgorithms4.TreeNode(1, null, two);
         System.out.println(DFSAlgorithms4.inorderTraversal(root));*/
 
-        
+        System.out.println(BFSAlgorithms2.minMutation("AAAAAAAA", "CCCCCCCC",
+                new String[]{"AAAAAAAA","AAAAAAAC","AAAAAACC","AAAAACCC","AAAACCCC","AACACCCC","ACCACCCC","ACCCCCCC","CCCCCCCA"}));
     }
 }
