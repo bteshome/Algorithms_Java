@@ -8,6 +8,7 @@ public class Vertex<T> {
     private final HashMap<T, Edge<T>> outgoingEdges = new HashMap<>();
     private final HashMap<T, Edge<T>> incomingEdges = new HashMap<>();
     private State state;
+    private int rank;
 
     public Vertex(T key) {
         this.key = key;
@@ -24,6 +25,14 @@ public class Vertex<T> {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public HashMap<T, Vertex<T>> getNeighbors() {

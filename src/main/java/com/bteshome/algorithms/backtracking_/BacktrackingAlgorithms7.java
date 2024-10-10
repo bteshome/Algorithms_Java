@@ -6,7 +6,8 @@ import java.util.List;
 public class BacktrackingAlgorithms7 {
     /**
      * https://leetcode.com/problems/word-ladder/description/
-     * NOTE - it fails leetcode time limit test. Try graph instead.
+     * NOTE - it fails leetcode time limit test.
+     *        Take a look at the faster BFS implementation.
      * */
     public static int wordLadder(String beginWord, String endWord, List<String> wordList) {
         if (!(beginWord == null || endWord == null || wordList == null || beginWord.isEmpty() || endWord.isEmpty() || wordList.isEmpty())) {

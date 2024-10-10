@@ -9,12 +9,13 @@ enum State {
     Visited
 }
 
-class Vertex<T> {
+public class Vertex<T> {
     private final T key;
     private final HashMap<T, Vertex<T>> neighbors = new HashMap<>();
     private final HashMap<T, Edge<T>> outgoingEdges = new HashMap<>();
     private final HashMap<T, Edge<T>> incomingEdges = new HashMap<>();
     private State state;
+    private int rank;
 
     public Vertex(T key) {
         this.key = key;
@@ -31,6 +32,14 @@ class Vertex<T> {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public HashMap<T, Vertex<T>> getNeighbors() {
