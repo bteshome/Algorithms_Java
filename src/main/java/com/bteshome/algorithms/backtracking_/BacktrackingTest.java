@@ -13,6 +13,7 @@ public class BacktrackingTest {
         //System.out.println(BacktrackingAlgorithms2.combinationSum(new int[]{2,3,6,7}, 7));
 
         //System.out.println(BacktrackingAlgorithms3.wordSearch(new char[][]{{'A','B','C','E'}, {'S','F','C','S'}, {'A','D','E','E'}}, "SEE"));
+        //System.out.println(BacktrackingAlgorithms3.wordSearchII(new char[][]{{'o','a','a','n'}, {'e','t','a','e'}, {'i','h','k','r'}, {'i','f','l','v'}}, new String[]{"oath","pea","eat","rain"}));
 
         //System.out.println(BacktrackingAlgorithms4.subsets(new int[]{1, 2, 3}));
 

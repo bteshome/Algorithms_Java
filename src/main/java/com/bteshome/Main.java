@@ -7,7 +7,10 @@ import com.bteshome.algorithms.dynamicProgramming_.DPTest;
 import com.bteshome.algorithms.graphs_.GraphTest;
 import com.bteshome.algorithms.hashTable_.HashTableTest;
 import com.bteshome.algorithms.strings_.StringsTest;
+import com.bteshome.algorithms.tries_.TrieTest;
 import com.bteshome.algorithms.twoPointers_.TwoPointerTest;
+
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +21,7 @@ public class Main {
         //BitsTest.test();
         //DPTest.test();
         //BacktrackingTest.test();
-        GraphTest.test();
+        //GraphTest.test();
+        TrieTest.test();
     }
 }
