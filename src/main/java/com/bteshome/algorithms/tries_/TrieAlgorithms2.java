@@ -68,4 +68,43 @@ public class TrieAlgorithms2 {
         path.deleteCharAt(path.length() - 1);
     }
 
+    /**
+     * https://leetcode.com/problems/longest-word-in-dictionary/?envType=problem-list-v2&envId=trie&difficulty=MEDIUM
+     * */
+    public static String longestWord(String[] words) {
+        if (words == null || words.length == 0) {
+            return null;
+        }
+
+        var trie = new Trie();
+        for (String word : words) {
+            trie.insert(word);
+        }
+
+        var root = trie.getRoot();
+        var longest = new String[]{""};
+        longestWord(root, new StringBuilder(), longest);
+
+        return longest[0];
+    }
+
+    private static void longestWord(Node node, StringBuilder path, String[] longest) {
+        var pathAsString = path.toString();
+        if (pathAsString.length() > longest[0].length()) {
+            longest[0] = pathAsString;
+        } else if (pathAsString.length() == longest[0].length()) {
+            if (pathAsString.compareTo(longest[0]) < 0) {
+                longest[0] = pathAsString;
+            }
+        }
+
+        for (var childKey : node.getChildren().keySet()) {
+            var child = node.getChildren().get(childKey);
+            if (child.isWord()) {
+                path.append(childKey);
+                longestWord(child, path, longest);
+                path.deleteCharAt(path.length() - 1);
+            }
+        }
+    }
 }

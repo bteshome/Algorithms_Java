@@ -2,7 +2,7 @@
 import java.util.HashMap;
 
 class Node {
-    private final HashMap<Character, Node> children = new HashMap<>();
+    private final Map<Character, Node> children = new TreeMap<>();
     private boolean isWord;
 
     public boolean isWord() {
@@ -13,7 +13,7 @@ class Node {
         isWord = word;
     }
 
-    public HashMap<Character, Node> getChildren() {
+    public Map<Character, Node> getChildren() {
         return children;
     }
 }

@@ -45,4 +45,48 @@ public class DFSAlgorithms6 {
             }
         }
     }
+
+    /**
+     * https://leetcode.com/problems/max-area-of-island/
+     * */
+    public static int maxAreaOfIsland(int[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+
+        int maxArea = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                maxArea = Math.max(maxArea, maxAreaOfIsland(grid, i, j));
+            }
+        }
+
+        return maxArea;
+    }
+
+    private static int maxAreaOfIsland(int[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length) {
+            return 0;
+        }
+
+        if (j < 0 || j >= grid[0].length) {
+            return 0;
+        }
+
+        if (grid[i][j] == 0) {
+            return 0;
+        }
+
+        grid[i][j] = 0;
+
+        int area = 1;
+
+        area += maxAreaOfIsland(grid, i, j-1);
+        area += maxAreaOfIsland(grid, i, j+1);
+        area += maxAreaOfIsland(grid, i-1, j);
+        area += maxAreaOfIsland(grid, i+1, j);
+
+        return area;
+    }
 }

@@ -1,9 +1,11 @@
 package com.bteshome.algorithms.tries_;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Node {
-    private final HashMap<Character, Node> children = new HashMap<>();
+    private final Map<Character, Node> children = new TreeMap<>();
     private boolean isWord;
 
     public boolean isWord() {
@@ -14,7 +16,7 @@ public class Node {
         isWord = word;
     }
 
-    public HashMap<Character, Node> getChildren() {
+    public Map<Character, Node> getChildren() {
         return children;
     }
 }
