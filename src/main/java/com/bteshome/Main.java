@@ -6,6 +6,7 @@ import com.bteshome.algorithms.bits_.BitsTest;
 import com.bteshome.algorithms.disjointSets_.DisjointSetsTest;
 import com.bteshome.algorithms.dynamicProgramming_.DPTest;
 import com.bteshome.algorithms.graphs_.GraphTest;
+import com.bteshome.algorithms.greedy.GreedyTest;
 import com.bteshome.algorithms.hashTable_.HashTableTest;
 import com.bteshome.algorithms.heap_.HeapTest;
 import com.bteshome.algorithms.strings_.StringsTest;
@@ -20,13 +21,14 @@ public class Main {
         //ArraysTest.test();
         //StringsTest.test();
         //HashTableTest.test();
-        //TwoPointerTest.test();
+        TwoPointerTest.test();
         //BitsTest.test();
         //DPTest.test();
         //BacktrackingTest.test();
         //GraphTest.test();
         //TrieTest.test();
         //DisjointSetsTest.test();
-        HeapTest.test();
+        //HeapTest.test();
+        //GreedyTest.test();
     }
 }

@@ -32,8 +32,11 @@ public class HeapTest {
         }*/
 
         //System.out.println(HeapAlgorithms2.reorganizeString("bbbbaaaaababaababab"));
-        System.out.println(HeapAlgorithms3.reorganizeString("vvvlo"));
+        //System.out.println(HeapAlgorithms3.reorganizeString("vvvlo"));
 
+        //System.out.println(HeapAlgorithms5.longestHappyString(1, 1, 7));
+
+        System.out.println(HeapAlgorithms4.taskScheduler(new char[]{'A','C','A','B','D','B'}, 1));
 
     }
 }
