@@ -1,7 +1,5 @@
 package com.bteshome.algorithms.heap_;
 
-import java.util.Arrays;
-
 public class HeapTest {
     public static void test() {
         //System.out.println(HeapAlgorithms1.lastStoneWeight(new int[]{2,7,4,1,8,1}));
@@ -36,7 +34,18 @@ public class HeapTest {
 
         //System.out.println(HeapAlgorithms5.longestHappyString(1, 1, 7));
 
-        System.out.println(HeapAlgorithms4.taskScheduler(new char[]{'A','C','A','B','D','B'}, 1));
+        System.out.println(HeapAlgorithms4.taskScheduler(new char[]{'A','A','A','B','B','B'}, 2));
+
+        //System.out.println(HeapAlgorithms5.maximumBagsWithFullCapacity(new int[]{2,3,4,5}, new int[]{1,2,4,4}, 2));
+
+        /*System.out.println(HeapAlgorithms6.meetingRoomsII(new int[][] {
+                new int[]{0,30},
+                new int[]{5,10},
+                new int[]{15,20}
+        }));*/
+
+
+
 
     }
 }

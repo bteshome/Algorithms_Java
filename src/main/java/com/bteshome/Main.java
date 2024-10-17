@@ -21,14 +21,14 @@ public class Main {
         //ArraysTest.test();
         //StringsTest.test();
         //HashTableTest.test();
-        TwoPointerTest.test();
+        //TwoPointerTest.test();
         //BitsTest.test();
         //DPTest.test();
         //BacktrackingTest.test();
         //GraphTest.test();
         //TrieTest.test();
         //DisjointSetsTest.test();
-        //HeapTest.test();
+        HeapTest.test();
         //GreedyTest.test();
     }
 }

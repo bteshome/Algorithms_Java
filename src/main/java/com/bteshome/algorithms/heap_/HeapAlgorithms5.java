@@ -1,5 +1,6 @@
 package com.bteshome.algorithms.heap_;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class HeapAlgorithms5 {
@@ -65,5 +66,67 @@ public class HeapAlgorithms5 {
         return buffer.toString();
     }
 
+    /**
+     * https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/
+     * */
+    public static int maximumBagsWithFullCapacity(int[] capacity, int[] rocks, int additionalRocks) {
+        if (capacity == null || rocks == null) {
+            return 0;
+        }
 
+        if (rocks.length != capacity.length) {
+            throw new IllegalArgumentException("arrays rocks and capacity have different lengths");
+        }
+
+        if (additionalRocks < 0) {
+            throw new IllegalArgumentException("additionalRocks is negative");
+        }
+
+        class Entry {
+            private final int id;
+            private int availableSpace;
+
+            public Entry(int id, int availableSpace) {
+                this.id = id;
+                this.availableSpace = availableSpace;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public int getAvailableSpace() {
+                return availableSpace;
+            }
+
+            public void placeRocks(int space) {
+                availableSpace -= space;
+            }
+        }
+
+        var orderingByAvailableSpace = new PriorityQueue<Entry>(Comparator.comparingInt(Entry::getAvailableSpace));
+
+        for (int i = 0; i < rocks.length; i++) {
+            if (rocks[i] > capacity[i]) {
+                throw new IllegalArgumentException("bag has more than its capacity");
+            } else if (rocks[i] < capacity[i]) {
+                orderingByAvailableSpace.add(new Entry(i, capacity[i] - rocks[i]));
+            }
+        }
+
+        while (!orderingByAvailableSpace.isEmpty()) {
+            if (additionalRocks == 0) {
+                break;
+            }
+            Entry top = orderingByAvailableSpace.remove();
+            int rocksToPlace = Math.min(additionalRocks, top.getAvailableSpace());
+            top.placeRocks(rocksToPlace);
+            if (top.getAvailableSpace() > 0) {
+                orderingByAvailableSpace.add(top);
+            }
+            additionalRocks -= rocksToPlace;
+        }
+
+        return rocks.length - orderingByAvailableSpace.size();
+    }
 }

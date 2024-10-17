@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class HeapAlgorithms4 {
+    /**
+     * TODO - it fails leetcode time limit test.
+     * https://leetcode.com/problems/task-scheduler/
+     * */
     public static int taskScheduler(char[] tasks, int n) {
         if (tasks == null || tasks.length == 0) {
             return 0;
@@ -26,19 +30,27 @@ public class HeapAlgorithms4 {
         }
 
         while (!ordering.isEmpty()) {
-            var top = ordering.remove();
-            if (canSchedule(schedule, top, n)) {
-                schedule.append(top.getType());
-                if (top.getFrequency() > 0) {
-                    ordering.add(top);
-                }
-            } else {
-                schedule.append(" ");
-            }
+            doSchedule(schedule, ordering, n);
         }
 
         System.out.println(schedule);
+
         return schedule.length();
+    }
+
+    private static void doSchedule(StringBuilder schedule, PriorityQueue<Task> ordering, int n) {
+        var top = ordering.remove();
+        if (canSchedule(schedule, top, n)) {
+            schedule.append(top.getType());
+            top.decrementFrequency();
+        } else if (!ordering.isEmpty()) {
+            doSchedule(schedule, ordering, n);
+        } else {
+            schedule.append(" ");
+        }
+        if (top.getFrequency() > 0) {
+            ordering.add(top);
+        }
     }
 
     private static boolean canSchedule(StringBuilder schedule, Task task, int n) {
