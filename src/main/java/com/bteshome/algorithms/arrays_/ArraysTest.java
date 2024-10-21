@@ -20,7 +20,9 @@ public class ArraysTest {
 
         //var root = ArrayAlgorithms2.sortedArrayToBST(new int[]{-10,-3,0,5,9});
 
-        System.out.println(ArrayAlgorithms3.generatePascalTriangle(5));
+        //System.out.println(ArrayAlgorithms3.generatePascalTriangle(5));
+
+        System.out.println(ArrayAlgorithms3.minAddToMakeParenthesesValid("((("));
     }
 }
 

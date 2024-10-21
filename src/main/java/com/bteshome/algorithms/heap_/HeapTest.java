@@ -34,7 +34,7 @@ public class HeapTest {
 
         //System.out.println(HeapAlgorithms5.longestHappyString(1, 1, 7));
 
-        System.out.println(HeapAlgorithms4.taskScheduler(new char[]{'A','A','A','B','B','B'}, 2));
+        //System.out.println(HeapAlgorithms4.taskScheduler(new char[]{'A','A','A','B','B','B'}, 2));
 
         //System.out.println(HeapAlgorithms5.maximumBagsWithFullCapacity(new int[]{2,3,4,5}, new int[]{1,2,4,4}, 2));
 
@@ -44,6 +44,7 @@ public class HeapTest {
                 new int[]{15,20}
         }));*/
 
+        System.out.println(HeapAlgorithms6.rearrangeStringKDistanceApart("aabbcc", 3));
 
 
 

@@ -80,4 +80,33 @@ public class HashTableAlgorithms1 {
 
         return top;
     }
+
+    /**
+     * https://leetcode.com/problems/task-scheduler-ii/
+     * */
+    public static long taskSchedulerII(int[] tasks, int space) {
+        if (tasks == null || tasks.length == 0 || space < 0) {
+            return 0;
+        }
+
+        long day = 0;
+        int taskIndex = 0;
+        var lastScheduled = new HashMap<Integer, Long>();
+        lastScheduled.put(tasks[taskIndex], day);
+
+        while (taskIndex < tasks.length - 1) {
+            taskIndex++;
+            day++;
+
+            int taskType = tasks[taskIndex];
+
+            if (lastScheduled.containsKey(taskType) && day < lastScheduled.get(taskType) + space + 1) {
+                day = lastScheduled.get(taskType) + space + 1;
+            }
+
+            lastScheduled.put(taskType, day);
+        }
+
+        return day + 1;
+    }
 }

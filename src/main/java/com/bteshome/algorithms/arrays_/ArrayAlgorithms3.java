@@ -42,4 +42,31 @@ public class ArrayAlgorithms3 {
 
         return seen.keySet().stream().findFirst().get();
     }
+
+    /**
+     * https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+     * */
+    public static int minAddToMakeParenthesesValid(String s) {
+        if (s == null || s.isEmpty()) {
+            return 0;
+        }
+
+        int unclosedCount = 0;
+        int invalidOpenCount = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(') {
+                unclosedCount++;
+            } else {
+                if (unclosedCount > 0) {
+                    unclosedCount--;
+                } else {
+                    invalidOpenCount++;
+                }
+            }
+        }
+
+        return unclosedCount + invalidOpenCount;
+    }
 }
