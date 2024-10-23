@@ -12,6 +12,7 @@ import com.bteshome.algorithms.hashTable_.HashTableTest;
 import com.bteshome.algorithms.heap_.HeapTest;
 import com.bteshome.algorithms.queues_.QueueTest;
 import com.bteshome.algorithms.stacks_.StackTest;
+import com.bteshome.algorithms.streams_.StreamTest;
 import com.bteshome.algorithms.strings_.StringsTest;
 import com.bteshome.algorithms.tries_.TrieTest;
 import com.bteshome.algorithms.twoPointers_.TwoPointerTest;
@@ -35,7 +36,8 @@ public class Main {
         //HeapTest.test();
         //GreedyTest.test();
         //StackTest.test();
-        QueueTest.test();
+        //QueueTest.test();
+        StreamTest.test();
 
     }
 }

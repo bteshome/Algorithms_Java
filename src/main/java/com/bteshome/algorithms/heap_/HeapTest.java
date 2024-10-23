@@ -44,8 +44,15 @@ public class HeapTest {
                 new int[]{15,20}
         }));*/
 
-        System.out.println(HeapAlgorithms6.rearrangeStringKDistanceApart("aabbcc", 3));
+        //System.out.println(HeapAlgorithms6.rearrangeStringKDistanceApart("aabbcc", 3));
 
+        //System.out.println(HeapAlgorithms7TODO.numberOfPeopleAwareOfSecret(6, 2, 4));
+
+        //System.out.println(HeapAlgorithms7TODO.maxTaskAssign(new int[]{5,9,8,5,9}, new int[]{1,6,4,2,6}, 1, 5));
+        //System.out.println(HeapAlgorithms7TODO.maxTaskAssign(new int[]{3,2,1}, new int[]{0,3,3}, 1, 1));
+        //System.out.println(HeapAlgorithms7TODO.maxTaskAssign(new int[]{5,4}, new int[]{0,0,0}, 1, 5));
+        //System.out.println(HeapAlgorithms7TODO.maxTaskAssign(new int[]{10,15,30}, new int[]{0,10,10,10,10}, 3, 10));
+        System.out.println(HeapAlgorithms7TODO.maxTaskAssign(new int[]{3,2,1, 5, 7, 4, 11, 11111111}, new int[]{0,3,3, 3, 17, 2, 4, 5}, 2, 2));
 
 
     }

@@ -1,7 +1,6 @@
 package com.bteshome.algorithms.queues_;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class QueueAlgorithms3 {
     /**
@@ -33,4 +32,36 @@ public class QueueAlgorithms3 {
 
         return l.get(0);
     }
+
+    /**
+     * https://leetcode.com/problems/sliding-window-maximum/
+     * */
+    public static int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums == null || nums.length == 0 || k > nums.length) {
+            return new int[0];
+        }
+
+        Deque<Integer> q = new LinkedList<>();
+        var maximums = new ArrayList<Integer>(nums.length - k + 1);
+
+        for (int i = 0; i < nums.length; i++) {
+            while (!q.isEmpty() && (q.peekFirst() + k - 1) < i) {
+                q.removeFirst();
+            }
+
+            while (!q.isEmpty() && nums[q.peekLast()] < nums[i]) {
+                q.removeLast();
+            }
+
+            q.addLast(i);
+
+            if (i >= k - 1) {
+                maximums.add(nums[q.peekFirst()]);
+            }
+        }
+
+        return maximums.stream().mapToInt(e -> e).toArray();
+    }
+
+
 }
