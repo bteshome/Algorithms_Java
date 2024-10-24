@@ -11,6 +11,7 @@ import com.bteshome.algorithms.greedy.GreedyTest;
 import com.bteshome.algorithms.hashTable_.HashTableTest;
 import com.bteshome.algorithms.heap_.HeapTest;
 import com.bteshome.algorithms.queues_.QueueTest;
+import com.bteshome.algorithms.slidingWindows_.SlidingWindowTest;
 import com.bteshome.algorithms.stacks_.StackTest;
 import com.bteshome.algorithms.streams_.StreamTest;
 import com.bteshome.algorithms.strings_.StringsTest;
@@ -37,7 +38,8 @@ public class Main {
         //GreedyTest.test();
         //StackTest.test();
         //QueueTest.test();
-        StreamTest.test();
+        //StreamTest.test();
+        SlidingWindowTest.test();
 
     }
 }
