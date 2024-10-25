@@ -1,7 +1,9 @@
 package com.bteshome.algorithms.slidingWindows_;
 
 import java.awt.geom.Arc2D;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 public class SlidingWindowAlgorithms1 {
@@ -61,5 +63,31 @@ public class SlidingWindowAlgorithms1 {
         }
 
         return maxAverage;
+    }
+
+    /**
+     * https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/
+     * */
+    public static int maximumLengthSubstring(String s) {
+        if (s == null) {
+            return 0;
+        }
+
+        int maxLength = 0;
+
+        for (int windowStart = 0; windowStart < s.length() && (s.length() - windowStart) > maxLength; windowStart++) {
+            var indexMap = new HashMap<Character, Integer>();
+            int windowEnd = windowStart;
+            for (; windowEnd < s.length(); windowEnd++) {
+                char c = s.charAt(windowEnd);
+                indexMap.put(c, indexMap.getOrDefault(c, 0) + 1);
+                if (indexMap.get(c) > 2) {
+                    break;
+                }
+            }
+            maxLength = Math.max(maxLength, windowEnd - windowStart);
+        }
+
+        return maxLength;
     }
 }
