@@ -1,109 +1,69 @@
 package com.bteshome.algorithms.heap_;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class HeapAlgorithms7TODO {
     /**
-     * TODO - it exceeds leetcode time limit.
-     * https://leetcode.com/problems/number-of-people-aware-of-a-secret/
+     * TODO - wrong answer.
+     * This is another attempt.
+     * https://leetcode.com/problems/rearrange-string-k-distance-apart/
      * */
-    public static int numberOfPeopleAwareOfSecret(int n, int delay, int forget) {
-        if (n < 1 || forget < 1) {
-            return 0;
+    public static String rearrangeStringKDistanceApart(String s, int k) {
+        if (s == null || s.length() < 2) {
+            return s;
         }
 
-        class Person {
-            public final int id;
-            public final int dayOfKnowing;
-            public int nextShareDay;
+        var frequencies = new HashMap<Character, Integer>();
+        var ordering = new PriorityQueue<Map.Entry<Character, Integer>>((a, b) -> b.getValue() - a.getValue());
+        var buffer = new StringBuilder(s.length());
 
-            public Person(int id, int dayOfKnowing, int delay) {
-                this.id = id;
-                this.dayOfKnowing = dayOfKnowing;
-                this.nextShareDay = dayOfKnowing + delay;
-            }
+        for (int i = 0; i < s.length(); i++) {
+            frequencies.put(s.charAt(i), frequencies.getOrDefault(s.charAt(i), 0) + 1);
         }
 
-        var ordering = new PriorityQueue<Person>(Comparator.comparingInt(a -> a.nextShareDay));
-        var numberOfPeopleAware = 1;
-        ordering.add(new Person(1, 1, delay));
+        ordering.addAll(frequencies.entrySet());
 
         while (!ordering.isEmpty()) {
-            var top = ordering.remove();
-
-            if (top.nextShareDay > n) {
-                return numberOfPeopleAware;
+            if (!rearrangeStringKDistanceApartAppend(ordering.remove(), ordering, buffer, k)) {
+                return "";
             }
-
-            if (top.nextShareDay >= top.dayOfKnowing + forget) {
-                numberOfPeopleAware--;
-                continue;
-            }
-
-            numberOfPeopleAware++;
-            System.out.printf("Day %s - %s shared with %s \n", top.nextShareDay, top.id, numberOfPeopleAware);
-            ordering.add(new Person(numberOfPeopleAware, top.nextShareDay, delay));
-            ordering.add(top);
-            top.nextShareDay++;
         }
 
-        return numberOfPeopleAware;
+        return buffer.toString();
     }
 
-    /**
-     * TODO - it yeilds a wrong answer on some of the leetcode test cases.
-     *        not sure if the test case is valid.
-     * https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/
-     * */
-    public static int maxTaskAssign(int[] tasks, int[] workers, int pills, int strength) {
-        var taskList = new ArrayList<Integer>(tasks.length);
-        for (int task : tasks) {
-            taskList.add(task);
-        }
-        var workersWithPillsQueue = new PriorityQueue<Integer>();
-
-        Collections.sort(taskList);
-        Arrays.sort(workers);
-
-        int tasksAassigned = 0;
-
-        for (int worker : workers) {
-            int taskIndex = findMatchingTask(taskList, worker, 0, taskList.size() - 1);
-            if (taskIndex != -1) {
-                tasksAassigned++;
-                taskList.remove(taskIndex);
-            } else if (pills > 0) {
-                workersWithPillsQueue.add(worker);
+    private static boolean rearrangeStringKDistanceApartAppend(Map.Entry<Character, Integer> top, PriorityQueue<Map.Entry<Character, Integer>> ordering, StringBuilder buffer, int k) {
+        while (true) {
+            var lastIndex = rearrangeStringKDistanceApartLastIndex(top.getKey(), buffer, k);
+            if (lastIndex == -1) {
+                buffer.append(top.getKey());
+                if (top.getValue() > 1) {
+                    top.setValue(top.getValue() - 1);
+                    ordering.add(top);
+                }
+                break;
+            } else if (ordering.isEmpty()) {
+                return false;
+            } else {
+                var nextTop = ordering.remove();
+                ordering.add(top);
+                if (!rearrangeStringKDistanceApartAppend(nextTop, ordering, buffer, k)) {
+                    return false;
+                }
             }
         }
 
-        while (!workersWithPillsQueue.isEmpty() && !taskList.isEmpty() && pills > 0) {
-            var worker = workersWithPillsQueue.remove();
-            if (worker + strength >= taskList.get(0)) {
-                taskList.remove(0);
-                tasksAassigned++;
-                pills--;
-            }
-        }
-
-        return tasksAassigned;
+        return true;
     }
 
-    private static int findMatchingTask(List<Integer> tasks, int worker, int start, int end) {
-        if (start > end) {
-            return -1;
+    private static int rearrangeStringKDistanceApartLastIndex(Character c, StringBuilder buffer, int k) {
+        for (int i = buffer.length() - 1; i >= Math.max(0, buffer.length() - k + 1) ; i--) {
+            if (buffer.charAt(i) == c) {
+                return i;
+            }
         }
-        if (worker >= tasks.get(end)) {
-            return end;
-        }
-        if (worker < tasks.get(start)) {
-            return -1;
-        }
-        int mid = (start + end) / 2;
-        if (worker >= tasks.get(mid)) {
-            return findMatchingTask(tasks, worker, mid, end - 1);
-        } else {
-            return findMatchingTask(tasks, worker, start, mid - 1);
-        }
+        return -1;
     }
 }

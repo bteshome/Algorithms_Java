@@ -10,6 +10,7 @@ import com.bteshome.algorithms.graphs_.GraphTest;
 import com.bteshome.algorithms.greedy.GreedyTest;
 import com.bteshome.algorithms.hashTable_.HashTableTest;
 import com.bteshome.algorithms.heap_.HeapTest;
+import com.bteshome.algorithms.matrix_.MatrixTest;
 import com.bteshome.algorithms.queues_.QueueTest;
 import com.bteshome.algorithms.slidingWindows_.SlidingWindowTest;
 import com.bteshome.algorithms.stacks_.StackTest;
@@ -34,12 +35,12 @@ public class Main {
         //GraphTest.test();
         //TrieTest.test();
         //DisjointSetsTest.test();
-        //HeapTest.test();
+        HeapTest.test();
         //GreedyTest.test();
         //StackTest.test();
         //QueueTest.test();
         //StreamTest.test();
-        SlidingWindowTest.test();
-
+        //SlidingWindowTest.test();
+        //MatrixTest.test();
     }
 }

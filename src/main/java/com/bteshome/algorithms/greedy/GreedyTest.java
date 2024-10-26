@@ -1,9 +1,5 @@
 package com.bteshome.algorithms.greedy;
 
-import com.bteshome.algorithms.heap_.HeapAlgorithms6;
-
-import java.util.Arrays;
-
 public class GreedyTest {
     public static void test() {
         //System.out.println(GreedyAlgorithms1.minimumOperations(new int[]{1,5,0,3,5}));
