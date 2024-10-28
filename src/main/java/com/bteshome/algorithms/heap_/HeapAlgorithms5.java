@@ -42,22 +42,22 @@ public class HeapAlgorithms5 {
         }
 
         while (!availability.isEmpty()) {
-            var top = availability.remove();
-            if (buffer.length() >= 2 && top.type == buffer.charAt(buffer.length() - 1) && top.type == buffer.charAt(buffer.length() - 2)) {
-                if (availability.isEmpty()) {
-                    break;
+            while (!availability.isEmpty()) {
+                var top = availability.remove();
+                if (buffer.length() >= 2 && top.type == buffer.charAt(buffer.length() - 1) && top.type == buffer.charAt(buffer.length() - 2)) {
+                    if (availability.isEmpty()) {
+                        break;
+                    }
+                    var secondTop = availability.remove();
+                    buffer.append(secondTop.type);
+                    if (secondTop.countAvailable > 1) {
+                        secondTop.decrementCountAvailable();
+                        availability.add(secondTop);
+                    }
                 }
-                var secondTop = availability.remove();
-                buffer.append(secondTop.type);
-                secondTop.decrementCountAvailable();
-                if (secondTop.countAvailable > 0) {
-                    availability.add(secondTop);
-                }
-                availability.add(top);
-            } else {
                 buffer.append(top.type);
-                top.decrementCountAvailable();
-                if (top.countAvailable > 0) {
+                if (top.countAvailable > 1) {
+                    top.decrementCountAvailable();
                     availability.add(top);
                 }
             }

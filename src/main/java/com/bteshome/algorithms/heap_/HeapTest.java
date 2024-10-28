@@ -1,7 +1,5 @@
 package com.bteshome.algorithms.heap_;
 
-import java.util.Arrays;
-
 public class HeapTest {
     public static void test() {
         //System.out.println(HeapAlgorithms1.lastStoneWeight(new int[]{2,7,4,1,8,1}));
@@ -79,7 +77,94 @@ public class HeapTest {
 
         //System.out.println(HeapAlgorithms10.nthUglyNumber(10));
 
-        System.out.println(HeapAlgorithms11.longestSubarray(new int[]{10,1,2,4,7,2}, 5));
+        //System.out.println(HeapAlgorithms11.longestSubarray(new int[]{10,1,2,4,7,2}, 5));
+
+        /*System.out.println(HeapAlgorithms11.maximumTotalImportanceOfRoads(5, new int[][]{
+                new int[]{0,1},
+                new int[]{1,2},
+                new int[]{2,3},
+                new int[]{0,2},
+                new int[]{1,3},
+                new int[]{2,4}}));*/
+
+        //System.out.println(HeapAlgorithms12.findClosestElements(new int[]{1,2,3,4,5}, 4, 3));
+
+        /*System.out.println(HeapAlgorithms12.maxEvents(new int[][]{
+                new int[]{1,2},
+                new int[]{2,3},
+                new int[]{3,4}
+        }));*/
+       /* System.out.println(HeapAlgorithms12.maxEvents3(new int[][]{
+                new int[]{1,5},
+                new int[]{1,5},
+                new int[]{1,5},
+                new int[]{2,3},
+                new int[]{2,3}
+        }));*/
+        /*System.out.println(HeapAlgorithms12.maxEvents(new int[][]{
+                new int[]{1,4},
+                new int[]{4,4},
+                new int[]{2,2},
+                new int[]{3,4},
+                new int[]{1,1}
+        }));*/
+        /*System.out.println(HeapAlgorithms12.maxEvents3(new int[][]{
+                new int[]{1,2},
+                new int[]{1,2},
+                new int[]{3,3},
+                new int[]{1,5},
+                new int[]{1,5}
+        }));*/
+        /*System.out.println(HeapAlgorithms12.maxEvents3(new int[][]{
+                new int[]{1,10},
+                new int[]{2,2},
+                new int[]{2,2},
+                new int[]{2,2},
+                new int[]{2,2}
+        }));*/
+        /*System.out.println(HeapAlgorithms12.maxEventsAttended(new int[][]{
+                new int[]{7,11},
+                new int[]{7,11},
+                new int[]{7,11},
+                new int[]{9,10},
+                new int[]{9,11}
+        }));*/
+
+        /*System.out.println(Arrays.toString(HeapAlgorithms13.getTaskProcessingOrder(new int[][]{
+                new int[]{1,2},
+                new int[]{2,4},
+                new int[]{3,2},
+                new int[]{4,1}
+        })));
+        System.out.println(Arrays.toString(HeapAlgorithms13.getTaskProcessingOrder(new int[][]{
+                new int[]{7,10},
+                new int[]{7,12},
+                new int[]{7,5},
+                new int[]{7,4},
+                new int[]{7,2}
+        })));*/
+        /*System.out.println(Arrays.toString(HeapAlgorithms13.getTaskProcessingOrder(new int[][]{
+                new int[]{5,2},
+                new int[]{7,2},
+                new int[]{9,4},
+                new int[]{6,3},
+                new int[]{5,10},
+                new int[]{1,1}
+        })));*/
+
+        //System.out.println(HeapAlgorithms13.furthestBuilding(new int[]{4,2,7,6,9,14,12}, 5, 1));
+        //System.out.println(HeapAlgorithms13.furthestBuildingYouCanReach(new int[]{14,3,19,3}, 17, 0));
+
+        /*System.out.println(HeapAlgorithms14.smallestChair(new int[][]{
+                new int[]{1,4},
+                new int[]{2,3},
+                new int[]{4,6}
+        }, 1));*/
+        System.out.println(HeapAlgorithms14.smallestChair(new int[][]{
+                new int[]{3,10},
+                new int[]{1,5},
+                new int[]{2,6}
+        }, 0));
 
     }
 }

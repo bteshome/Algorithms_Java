@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 public class HeapAlgorithms4 {
     /**
      * TODO - it fails leetcode time limit test.
+     *      - update. It now passes, but merely.
      * https://leetcode.com/problems/task-scheduler/
      * */
     public static int taskScheduler(char[] tasks, int n) {
@@ -13,20 +14,18 @@ public class HeapAlgorithms4 {
             return 0;
         }
 
-        var frequencies = new HashMap<Character, Integer>();
+        var frequencies = new int[26];
         var ordering = new PriorityQueue<Task>((a, b) -> b.getFrequency() - a.getFrequency());
         var schedule = new StringBuilder();
 
         for (char task : tasks) {
-            if (!frequencies.containsKey(task)) {
-                frequencies.put(task, 1);
-            } else {
-                frequencies.put(task, frequencies.get(task) + 1);
-            }
+            frequencies[task - 'A']++;
         }
 
-        for (Character task : frequencies.keySet()) {
-            ordering.add(new Task(task, frequencies.get(task)));
+        for (int i = 0; i < frequencies.length; i++) {
+            if (frequencies[i] > 0) {
+                ordering.add(new Task(i, frequencies[i]));
+            }
         }
 
         while (!ordering.isEmpty()) {
@@ -41,7 +40,7 @@ public class HeapAlgorithms4 {
     private static void doSchedule(StringBuilder schedule, PriorityQueue<Task> ordering, int n) {
         var top = ordering.remove();
         if (canSchedule(schedule, top, n)) {
-            schedule.append(top.getType());
+            schedule.append((char)(top.getType() + 'A'));
             top.decrementFrequency();
         } else if (!ordering.isEmpty()) {
             doSchedule(schedule, ordering, n);
@@ -55,7 +54,7 @@ public class HeapAlgorithms4 {
 
     private static boolean canSchedule(StringBuilder schedule, Task task, int n) {
         for (int i = 0, j = schedule.length() - 1; i < n && j >= 0; i++,j--) {
-            if (task.type.equals(schedule.charAt(j))) {
+            if (task.type == schedule.charAt(j) - 'A') {
                 return false;
             }
         }
@@ -63,14 +62,14 @@ public class HeapAlgorithms4 {
     }
 
     private static class Task {
-        private final Character type;
+        private final int type;
         private Integer frequency;
 
-        public Task(Character type, Integer frequency) {
+        public Task(int type, Integer frequency) {
             this.type = type;
             this.frequency = frequency;
         }
-        public Character getType() {
+        public int getType() {
             return type;
         }
         public Integer getFrequency() {
