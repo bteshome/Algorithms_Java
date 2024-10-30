@@ -8,5 +8,8 @@ import java.util.Arrays;
 public class BitsTest {
     public static void test() {
         System.out.println(Arrays.toString(BitsAlgorithms1.countBits(5)));
+
+        System.out.println(BitsAlgorithms1.reverseInteger(-123));
+
     }
 }

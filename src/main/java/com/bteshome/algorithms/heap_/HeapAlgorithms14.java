@@ -1,7 +1,8 @@
 package com.bteshome.algorithms.heap_;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
 
 public class HeapAlgorithms14 {
     /**
@@ -53,5 +54,48 @@ public class HeapAlgorithms14 {
         }
 
         return 0;
+    }
+
+    /**
+     * https://leetcode.com/problems/car-pooling/
+     * */
+    public static boolean carPooling(int[][] trips, int capacity) {
+        var tripsStartingAt = new HashMap<Integer, List<int[]>>();
+        var tripsEndingAt = new HashMap<Integer, List<int[]>>();
+        var stops = new TreeSet<Integer>();
+
+        for (int[] trip : trips) {
+            int start = trip[1];
+            int end = trip[2];
+            stops.add(start);
+            stops.add(end);
+            if (!tripsStartingAt.containsKey(start)) {
+                tripsStartingAt.put(start, new ArrayList<>());
+            }
+            tripsStartingAt.get(start).add(trip);
+            if (!tripsEndingAt.containsKey(end)) {
+                tripsEndingAt.put(end, new ArrayList<>());
+            }
+            tripsEndingAt.get(end).add(trip);
+        }
+
+        for (int stop : stops) {
+            if (tripsStartingAt.containsKey(stop)) {
+                for (int[] trip : tripsStartingAt.get(stop)) {
+                    capacity -= trip[0];
+                };
+            }
+            if (tripsEndingAt.containsKey(stop)) {
+                for (int[] trip : tripsEndingAt.get(stop)) {
+                    capacity += trip[0];
+                }
+            }
+
+            if (capacity < 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -26,4 +26,43 @@ public class BitsAlgorithms1 {
         }
         return count;
     }
+
+    /**
+     * https://leetcode.com/problems/reverse-integer/
+     * NOTE - there is another implementation that does not use decimal math,
+     *        which is slower.
+     * */
+    public static int reverseInteger(int x) {
+        int reverse = 0;
+
+        while (x != 0) {
+            int mod = (x % 10);
+
+            if (reverse > Integer.MAX_VALUE / 10 || (reverse == Integer.MAX_VALUE / 10 && mod > 7)) {
+                return 0;
+            }
+
+            if (reverse < Integer.MIN_VALUE / 10 || (reverse == Integer.MAX_VALUE / 10 && mod < -8)) {
+                return 0;
+            }
+
+            reverse = reverse * 10 + mod;
+            x /= 10;
+        }
+
+        return reverse;
+    }
+
+    /**
+     * https://leetcode.com/problems/single-number/
+     * */
+    public int singleNumber(int[] nums) {
+        int xor = 0;
+
+        for (int num : nums) {
+            xor = xor ^ num;
+        }
+
+        return xor;
+    }
 }

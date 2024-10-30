@@ -3,6 +3,7 @@ package com.bteshome.algorithms.backtracking_;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class BacktrackingAlgorithms9 {
     /**
@@ -75,5 +76,54 @@ public class BacktrackingAlgorithms9 {
         }
 
         path.removeLast();
+    }
+
+    /**
+     * https://leetcode.com/problems/path-with-maximum-minimum-value/
+     * NOTE - this solutions exceeds leetcode time limit.
+     *        There can be a much faster solution not utilizing backtracking.
+     * */
+    public static int maximumMinimumPath(int[][] grid) {
+        if (grid == null || grid.length == 0) {
+            throw new IllegalArgumentException("grid null or empty");
+        }
+
+        var minStack = new Stack<Integer>();
+        minStack.push(grid[0][0]);
+        return maximumMinimumPath(grid, 0, 0, minStack);
+    }
+
+    private static int maximumMinimumPath(int[][] grid, int i, int j, Stack<Integer> minStack) {
+        var value = grid[i][j];
+        var minValue = minStack.isEmpty() ? value : Math.min(minStack.peek(), value);
+
+        if (i == grid.length - 1 && j == grid[0].length - 1) {
+            return minValue;
+        }
+
+        minStack.push(minValue);
+        grid[i][j] = -1;
+        int maxMinScore = Integer.MIN_VALUE;
+
+        if (i > 0 && grid[i-1][j] != -1) {
+            maxMinScore = Math.max(maxMinScore, maximumMinimumPath(grid, i - 1, j, minStack));
+        }
+
+        if (i < grid.length - 1 && grid[i+1][j] != -1) {
+            maxMinScore = Math.max(maxMinScore, maximumMinimumPath(grid, i + 1, j, minStack));
+        }
+
+        if (j > 0 && grid[i][j-1] != -1) {
+            maxMinScore = Math.max(maxMinScore, maximumMinimumPath(grid, i, j - 1, minStack));
+        }
+
+        if (j < grid[0].length - 1 && grid[i][j+1] != -1) {
+            maxMinScore = Math.max(maxMinScore, maximumMinimumPath(grid, i, j + 1, minStack));
+        }
+
+        minStack.pop();
+        grid[i][j] = value;
+
+        return maxMinScore;
     }
 }

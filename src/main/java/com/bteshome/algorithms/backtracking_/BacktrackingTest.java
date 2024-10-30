@@ -53,12 +53,26 @@ public class BacktrackingTest {
 
         //System.out.println(BacktrackingAlgorithms9.nQueensII(4));
 
-        var graph = new int[][]{
+        /*var graph = new int[][]{
                 new int[]{1, 2},
                 new int[]{3},
                 new int[]{3},
                 new int[]{}
         };
-        System.out.println(BacktrackingAlgorithms9.allPathsSourceTarget(graph));
+        System.out.println(BacktrackingAlgorithms9.allPathsSourceTarget(graph));*/
+
+        /*System.out.println(HeapAlgorithms15.maximumMinimumPath(new int[][]{
+                new int[]{5,4,5},
+                new int[]{1,2,6},
+                new int[]{7,4,6}
+        }));*/
+        System.out.println(BacktrackingAlgorithms9.maximumMinimumPath(new int[][]{
+                new int[]{1,3,1,1,2,0},
+                new int[]{0,1,3,0,1,2},
+                new int[]{0,2,2,1,0,3},
+                new int[]{1,3,3,0,3,1},
+                new int[]{1,1,2,3,2,2},
+                new int[]{0,1,3,2,2,1}
+        }));
     }
 }

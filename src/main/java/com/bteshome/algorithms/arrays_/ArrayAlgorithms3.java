@@ -69,4 +69,33 @@ public class ArrayAlgorithms3 {
 
         return unclosedCount + invalidOpenCount;
     }
+
+    /**
+     * https://leetcode.com/problems/intersection-of-two-arrays-ii/
+     * */
+    public static int[] intersectionOfTwoArraysII(int[] nums1, int[] nums2) {
+        var d = new HashMap<Integer, Integer>();
+        for (int n : nums1) {
+            d.put(n, d.getOrDefault(n, 0) + 1);
+        }
+
+        var result = new ArrayList<Integer>();
+        for (int n : nums2) {
+            if (d.containsKey(n)) {
+                result.add(n);
+                if (d.get(n) == 1) {
+                    d.remove(n);
+                } else {
+                    d.put(n, d.get(n) - 1);
+                }
+            }
+        }
+
+        var output = new int[result.size()];
+        for (int i = 0; i < output.length; i++) {
+            output[i] = result.get(i);
+        }
+
+        return output;
+    }
 }

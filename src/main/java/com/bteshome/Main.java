@@ -26,7 +26,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         //ArraysTest.test();
-        //StringsTest.test();
+        StringsTest.test();
         //HashTableTest.test();
         //TwoPointerTest.test();
         //BitsTest.test();
@@ -35,7 +35,7 @@ public class Main {
         //GraphTest.test();
         //TrieTest.test();
         //DisjointSetsTest.test();
-        HeapTest.test();
+        //HeapTest.test();
         //GreedyTest.test();
         //StackTest.test();
         //QueueTest.test();

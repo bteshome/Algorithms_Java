@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.arrays_;
 
+import com.bteshome.algorithms.bits_.BitsAlgorithms1;
+
 public class ArraysTest {
     public static void test() {
         //System.out.println(Arrays.toString(ArrayAlgorithms1.twoSum(new int[]{3, 2, 4}, 6);));
@@ -22,7 +24,26 @@ public class ArraysTest {
 
         //System.out.println(ArrayAlgorithms3.generatePascalTriangle(5));
 
-        System.out.println(ArrayAlgorithms3.minAddToMakeParenthesesValid("((("));
+        //System.out.println(ArrayAlgorithms3.minAddToMakeParenthesesValid("((("));
+
+        //int[] nums = new int[]{1,2,3,4,5,6,7};
+        //int[] nums = new int[]{-1,-100,3,99};
+        //int[] nums = new int[]{1,2,3,4,5,6};
+        //int k = 3;
+        //int k = 2;
+        /*int k = 4;
+        System.out.println(Arrays.toString(nums));
+        ArrayAlgorithms2.rotateUsingCycles(nums, k);
+        System.out.println(Arrays.toString(nums));*/
+
+        //System.out.println(Arrays.toString(ArrayAlgorithms3.intersectionOfTwoArraysII(new int[]{1,2,2,1}, new int[]{2,2})));
+
+        //int[] a = new int[]{0,1,0,3,12};
+        /*int[] a = new int[]{1,0,0};
+        ArrayAlgorithms4.moveZeroes(a);
+        System.out.println(Arrays.toString(a));*/
+
+        System.out.println(ArrayAlgorithms4.reverseInteger(-123));
     }
 }
 

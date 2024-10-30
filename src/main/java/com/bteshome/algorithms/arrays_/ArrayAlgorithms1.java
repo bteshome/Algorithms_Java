@@ -16,9 +16,8 @@ public class ArrayAlgorithms1 {
         }
 
         HashMap<Integer, Integer> seen = new HashMap<>();
-        seen.put(nums[0], 0);
 
-        for (int i = 1; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             int current = nums[i];
             int other = target - current;
             if (seen.containsKey(other)) {

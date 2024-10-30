@@ -1,5 +1,12 @@
 package com.bteshome.algorithms.heap_;
 
+import com.bteshome.algorithms.arrays_.ArrayAlgorithms2;
+import com.bteshome.algorithms.backtracking_.BacktrackingAlgorithms9;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class HeapTest {
     public static void test() {
         //System.out.println(HeapAlgorithms1.lastStoneWeight(new int[]{2,7,4,1,8,1}));
@@ -160,11 +167,23 @@ public class HeapTest {
                 new int[]{2,3},
                 new int[]{4,6}
         }, 1));*/
-        System.out.println(HeapAlgorithms14.smallestChair(new int[][]{
+        /*System.out.println(HeapAlgorithms14.smallestChair(new int[][]{
                 new int[]{3,10},
                 new int[]{1,5},
                 new int[]{2,6}
-        }, 0));
+        }, 0));*/
+
+        /*System.out.println(HeapAlgorithms14.carPooling(new int[][]{
+                new int[]{2,1,5},
+                new int[]{3,3,7}
+                }, 4));*/
+        /*System.out.println(HeapAlgorithms14.carPooling(new int[][]{
+                new int[]{2,1,5},
+                new int[]{3,3,7}
+        }, 5));*/
+
+        //System.out.println(HeapAlgorithms15.maximalScoreAfterKOperations(new int[]{10,10,10,10,10}, 5));
+
 
     }
 }
