@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.arrays_;
 
+import java.util.*;
+
 public class ArrayAlgorithms4 {
     /**
      * https://leetcode.com/problems/move-zeroes/
@@ -75,5 +77,57 @@ public class ArrayAlgorithms4 {
         } catch (NumberFormatException e) {
             return 0;
         }
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return List.of();
+        }
+
+        class Entry {
+            private final int a;
+            private final int b;
+            private final int c;
+
+            public Entry(int a, int b, int c) {
+                int[] values = new int[]{a, b, c};
+                Arrays.sort(values);
+                this.a = values[0];
+                this.b = values[1];
+                this.c = values[2];
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (this == o) return true;
+                if (o == null || getClass() != o.getClass()) return false;
+                Entry entry = (Entry) o;
+                return a == entry.a && b == entry.b && c == entry.c;
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hash(a, b, c);
+            }
+        }
+
+        HashSet<Entry> set = new HashSet<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            HashMap<Integer, Integer> seen = new HashMap<>();
+
+            for (int j = 0; j < nums.length; j++) {
+                int current = nums[j];
+                if (i != j) {
+                    int other = -current - nums[0];
+                    if (seen.containsKey(other)) {
+                        set.add(new Entry(nums[i], nums[j], nums[seen.get(other)]));
+                    }
+                }
+                seen.put(current, j);
+            }
+        }
+
+        return set.stream().map(e -> List.of(e.a, e.b, e.c)).toList();
     }
 }

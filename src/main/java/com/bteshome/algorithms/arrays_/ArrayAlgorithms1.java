@@ -1,34 +1,6 @@
 package com.bteshome.algorithms.arrays_;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.stream.Stream;
-
 public class ArrayAlgorithms1 {
-    /**
-     * leetcode https://leetcode.com/problems/two-sum/?envType=problem-list-v2&envId=array&difficulty=EASY
-     * */
-    public static int[] twoSum(int[] nums, int target) {
-        if (nums == null || nums.length < 2) {
-            return null;
-        }
-
-        HashMap<Integer, Integer> seen = new HashMap<>();
-
-        for (int i = 0; i < nums.length; i++) {
-            int current = nums[i];
-            int other = target - current;
-            if (seen.containsKey(other)) {
-                return new int[]{seen.get(other), i};
-            }
-            seen.put(current, i);
-        }
-
-        return null;
-    }
-
     /**
      * leetcode https://leetcode.com/problems/remove-duplicates-from-sorted-array/?envType=problem-list-v2&envId=array&difficulty=EASY
      * */

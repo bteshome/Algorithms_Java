@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.matrix_;
 
+import java.util.HashSet;
+
 public class MatrixAlgorithms1 {
     /**
      * https://leetcode.com/problems/search-a-2d-matrix-ii/
@@ -54,6 +56,39 @@ public class MatrixAlgorithms1 {
             matrix[matrix.length - 1 - layer][matrix.length - 1 - i] = temp2;
             matrix[matrix.length - 1 - i][layer] = temp3;
             matrix[layer][i] = temp4;
+        }
+    }
+
+    /**
+     * https://leetcode.com/problems/set-matrix-zeroes/
+     * */
+    public static void setZeroes(int[][] matrix) {
+        if (matrix == null) {
+            return;
+        }
+
+        var zeroRows = new HashSet<Integer>();
+        var zeroColumns = new HashSet<Integer>();
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 0) {
+                    zeroRows.add(i);
+                    zeroColumns.add(j);
+                }
+            }
+        }
+
+        for (int row : zeroRows) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[row][j] = 0;
+            }
+        }
+
+        for (int column : zeroColumns) {
+            for (int i = 0; i < matrix.length; i++) {
+                matrix[i][column] = 0;
+            }
         }
     }
 }

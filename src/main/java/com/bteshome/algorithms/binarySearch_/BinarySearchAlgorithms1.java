@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.binarySearch_;
 
+import com.bteshome.algorithms.trees_.TreeNode;
+
 public class BinarySearchAlgorithms1 {
     /**
      * https://leetcode.com/problems/capacity-to-ship-packages-within-d-days
@@ -61,5 +63,54 @@ public class BinarySearchAlgorithms1 {
         }
 
         return ship(weights, days - 1, weights.length, capacity);
+    }
+
+    /**
+     * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+     * */
+    public static TreeNode sortedArrayToBST(int[] nums) {
+        if (nums == null) {
+            return null;
+        }
+
+        return sortedArrayToBST(nums, 0, nums.length - 1);
+    }
+
+    private static TreeNode sortedArrayToBST(int[] nums, int left, int right) {
+        if (left > right) {
+            return null;
+        }
+
+        int mid = (left + right) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = sortedArrayToBST(nums, left, mid - 1);
+        node.right = sortedArrayToBST(nums, mid + 1, right);
+
+        return node;
+    }
+
+    /**
+     * https://leetcode.com/problems/first-bad-version/
+     * NOTE - there seems to be a problem with the leetcode test running.
+     * */
+    public static int firstBadVersion(int n) {
+        int low = 1;
+        int high = n;
+
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (isBadVersion(mid)) {
+                high = mid;
+            } else {
+                low = mid + 1;
+            }
+
+        }
+
+        return low;
+    }
+
+    private static boolean isBadVersion(int version) {
+        return version == 1;
     }
 }
