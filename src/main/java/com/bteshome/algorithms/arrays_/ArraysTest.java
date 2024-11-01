@@ -40,7 +40,11 @@ public class ArraysTest {
         ArrayAlgorithms4.moveZeroes(a);
         System.out.println(Arrays.toString(a));*/
 
-        System.out.println(ArrayAlgorithms4.reverseInteger(-1));
+        //System.out.println(ArrayAlgorithms4.reverseInteger(-1));
+
+        //System.out.println(ArrayAlgorithms4.increasingTriplet(new int[]{1,5,0,4,1,3}));
+
+        System.out.println(ArrayAlgorithms5.findMissingRanges(new int[]{0,1,3,50,75}, 0, 99));
+
     }
 }
-

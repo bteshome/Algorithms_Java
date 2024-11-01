@@ -7,7 +7,10 @@ public class TwoPointerTest {
         //System.out.println(TwoPointerAlgorithms1.validPalindromeII_Recursive("abc"));
         //System.out.println(TwoPointerAlgorithms1.validPalindromeII_Iterative("abc"));
 
-        System.out.println(TwoPointerAlgorithms2.threeSum(new int[]{-2,0,0,2,2}));
+        //System.out.println(TwoPointerAlgorithms2.threeSum(new int[]{-2,0,0,2,2}));
+
+        //System.out.println(TwoPointerAlgorithms2.longestPalindromicSubstring("babad"));
+
 
     }
 }

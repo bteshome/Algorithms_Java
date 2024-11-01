@@ -1,9 +1,6 @@
 package com.bteshome.algorithms.trees_;
 
-import java.util.ArrayDeque;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeAlgorithms1 {
     /**
@@ -83,5 +80,45 @@ public class TreeAlgorithms1 {
         return traversal;
     }
 
+    /**
+     * https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+     * */
+    public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        if (root == null) {
+            return List.of();
+        }
 
+        var levels = new HashMap<TreeNode, Integer>();
+        var traversal = new ArrayList<ArrayDeque<Integer>>();
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.offer(root);
+        levels.put(root, 0);
+
+        while (!q.isEmpty()) {
+            TreeNode front = q.poll();
+            int frontLevel = levels.get(front);
+            int childLevel = frontLevel + 1;
+
+            if (traversal.size() <= frontLevel) {
+                traversal.add(new ArrayDeque<>());
+            }
+            if (frontLevel % 2 == 0) {
+                traversal.get(frontLevel).addLast(front.val);
+            } else {
+                traversal.get(frontLevel).addFirst(front.val);
+            }
+
+            if (front.left != null){
+                q.offer(front.left);
+                levels.put(front.left, childLevel);
+            }
+
+            if (front.right != null){
+                q.offer(front.right);
+                levels.put(front.right, childLevel);
+            }
+        }
+
+        return traversal.stream().map(e -> e.stream().toList()).toList();
+    }
 }

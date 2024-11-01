@@ -78,4 +78,59 @@ public class TwoPointerAlgorithms2 {
 
         return list;
     }
+
+    /**
+     * https://leetcode.com/problems/longest-palindromic-substring/
+     * NOTE - there is also a DP based solution with similar time complexity O(n^2)
+     *        but practically slower.
+     * */
+    public static String longestPalindromicSubstring(String s) {
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
+
+        int maxLength = 0;
+        int maxLengthLeft = 0;
+        int maxLengthRight = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            int left = i;
+            int right = i;
+
+            while (left >= 0 && right < s.length()) {
+                if (s.charAt(left) != s.charAt(right)) {
+                    break;
+                }
+                int length = right - left + 1;
+                if (length > maxLength) {
+                    maxLength = length;
+                    maxLengthLeft = left;
+                    maxLengthRight = right;
+                }
+                left--;
+                right++;
+            }
+        }
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            int left = i;
+            int right = i+1;
+
+            while (left >= 0 && right < s.length()) {
+                if (s.charAt(left) != s.charAt(right)) {
+                    break;
+                }
+                int length = right - left + 1;
+                if (length > maxLength) {
+                    maxLength = length;
+                    maxLengthLeft = left;
+                    maxLengthRight = right;
+                }
+                left--;
+                right++;
+            }
+        }
+
+        return s.substring(maxLengthLeft, maxLengthRight + 1);
+    }
 }

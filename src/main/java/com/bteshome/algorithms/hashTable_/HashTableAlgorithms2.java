@@ -1,6 +1,9 @@
 package com.bteshome.algorithms.hashTable_;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class HashTableAlgorithms2 {
     /**
@@ -67,5 +70,30 @@ public class HashTableAlgorithms2 {
         }
 
         return null;
+    }
+
+    /**
+     * https://leetcode.com/problems/group-anagrams/
+     * */
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        if (strs == null) {
+            return List.of();
+        }
+
+        var groups = new HashMap<Integer, List<String>>();
+
+        for (String str : strs) {
+            char[] a = str.toCharArray();
+            Arrays.sort(a);
+            int hash = Arrays.hashCode(a);
+
+            if (!groups.containsKey(hash)) {
+                groups.put(hash, new ArrayList<>());
+            }
+
+            groups.get(hash).add(str);
+        }
+
+        return groups.values().stream().toList();
     }
 }

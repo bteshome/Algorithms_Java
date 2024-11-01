@@ -1,7 +1,11 @@
 package com.bteshome;
 
+import com.bteshome.algorithms.arrays_.ArraysTest;
 import com.bteshome.algorithms.binarySearch_.BinarySearchTest;
+import com.bteshome.algorithms.hashTable_.HashTableTest;
 import com.bteshome.algorithms.math_.MathTest;
+import com.bteshome.algorithms.strings_.StringsTest;
+import com.bteshome.algorithms.trees_.TreeTest;
 import com.bteshome.algorithms.twoPointers_.TwoPointerTest;
 
 import java.util.HashSet;
@@ -11,7 +15,7 @@ public class Main {
         //ArraysTest.test();
         //StringsTest.test();
         //HashTableTest.test();
-        TwoPointerTest.test();
+        //TwoPointerTest.test();
         //MathTest.test();
         //DPTest.test();
         //BacktrackingTest.test();
@@ -25,12 +29,10 @@ public class Main {
         //StreamTest.test();
         //SlidingWindowTest.test();
         //MatrixTest.test();
-        //TreeTest.test();
+        TreeTest.test();
         //BinarySearchTest.test();
 
 
 
     }
-
-
 }
