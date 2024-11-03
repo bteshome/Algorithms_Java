@@ -72,6 +72,36 @@ public class HeapAlgorithms10 {
         return output;
     }
 
+    public static int[] topKFrequentSlightlyDifferentApproach(int[] nums, int k) {
+        if (nums == null) {
+            return nums;
+        }
+
+        var frequencies = new HashMap<Integer, Integer>();
+        var ordering = new PriorityQueue<Map.Entry<Integer, Integer>>(Comparator.comparingInt(Map.Entry::getValue));
+        k = Math.min(k, nums.length);
+        var output = new int[k];
+
+        for (int num : nums) {
+            frequencies.put(num, frequencies.getOrDefault(num, 0) + 1);
+        }
+
+        for (var entry : frequencies.entrySet()) {
+            if (ordering.size() < k) {
+                ordering.offer(entry);
+            } else if (entry.getValue() > ordering.peek().getValue()){
+                ordering.poll();
+                ordering.offer(entry);
+            }
+        }
+
+        for (int i = 0; i < k; i++) {
+            output[i] = ordering.poll().getKey();
+        }
+
+        return output;
+    }
+
     /**
      * https://leetcode.com/problems/ugly-number-ii/
      * */

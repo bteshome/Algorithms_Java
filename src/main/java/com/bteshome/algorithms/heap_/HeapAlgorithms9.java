@@ -6,7 +6,8 @@ import java.util.PriorityQueue;
 
 public class HeapAlgorithms9 {
     /**
-     * https://leetcode.com/problems/meeting-rooms-ii
+     * https://leetcode.com/problems/meeting-rooms-ii/
+     * NOTE: - there is also a hash table based solution, which is slightly slower.
      * */
     public static int meetingRoomsII(int[][] intervals) {
         if (intervals == null) {
@@ -17,19 +18,17 @@ public class HeapAlgorithms9 {
             return intervals.length;
         }
 
+        var currentlyAttending = new PriorityQueue<int[]>(Comparator.comparingInt(a -> a[1]));
+        var maxRoomsNeeded = 0;
+
         Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 
-        var maxRoomsNeeded = 0;
-        var rooms = new PriorityQueue<Integer>();
-
         for (int[] interval : intervals) {
-            if (!rooms.isEmpty() && interval[0] >= rooms.peek()) {
-                rooms.remove();
-                rooms.add(interval[1]);
-            } else {
-                rooms.add(interval[1]);
-                maxRoomsNeeded = Math.max(maxRoomsNeeded, rooms.size());
+            while (!currentlyAttending.isEmpty() && currentlyAttending.peek()[1] <= interval[0]) {
+                currentlyAttending.poll();
             }
+            currentlyAttending.offer(interval);
+            maxRoomsNeeded = Math.max(maxRoomsNeeded, currentlyAttending.size());
         }
 
         return maxRoomsNeeded;

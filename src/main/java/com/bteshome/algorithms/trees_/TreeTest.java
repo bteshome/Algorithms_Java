@@ -18,7 +18,30 @@ public class TreeTest {
         root.right = three;
         System.out.println(TreeAlgorithms1.zigzagLevelOrder(root));*/
 
-        var root = TreeAlgorithms2.buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
-        System.out.println(root.val);
+        /*var root = TreeAlgorithms2.buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
+        System.out.println(root.val);*/
+
+        /*var root = new TreeNode(5);
+        var four = new TreeNode(4);
+        //var one = new TreeNode(1, null, new TreeNode(2));
+        var two = new TreeNode(2);
+        var one = new TreeNode(1, two, null);
+        var three = new TreeNode(3, one, four);
+        var six = new TreeNode(6);
+        root.left = three;
+        root.right = six;
+        //System.out.println(TreeAlgorithms3.inorderSuccessor(root, four).val);
+        System.out.println(TreeAlgorithms3.inorderSuccessor(root, two).val);*/
+
+        var root = new TreeNode(5);
+        var four = new TreeNode(4);
+        var two = new TreeNode(2);
+        var one = new TreeNode(1, two, null);
+        var three = new TreeNode(3, one, four);
+        var six = new TreeNode(6);
+        root.left = three;
+        root.right = six;
+        System.out.println(TreeAlgorithms2.inorderTraversalIterative(root));
+
     }
 }

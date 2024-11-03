@@ -14,5 +14,6 @@ public class MathTest {
         //System.out.println(MathAlgorithms2.isPowerOfThree(27));
 
 
+
     }
 }

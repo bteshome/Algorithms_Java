@@ -2,6 +2,8 @@ package com.bteshome.algorithms.arrays_;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class ArrayAlgorithms5 {
     /**
@@ -72,5 +74,32 @@ public class ArrayAlgorithms5 {
         builder.append(c);
 
         return builder.toString();
+    }
+
+    /**
+     * https://leetcode.com/problems/merge-intervals/
+     * */
+    public int[][] merge(int[][] intervals) {
+        if (intervals == null || intervals.length < 2) {
+            return intervals;
+        }
+
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+        int[][] merged = new int[intervals.length][];
+        int i = 0;
+        merged[0] = new int[]{intervals[0][0], intervals[0][1]};
+
+        for (int j = 1; j < intervals.length; j++) {
+            int[] interval = intervals[j];
+            if (merged[i][1] >= interval[0]) {
+                merged[i][1] = Math.max(merged[i][1], interval[1]);
+            } else {
+                i++;
+                merged[i] = new int[]{interval[0], interval[1]};
+            }
+        }
+
+        return Arrays.copyOf(merged, i + 1);
     }
 }

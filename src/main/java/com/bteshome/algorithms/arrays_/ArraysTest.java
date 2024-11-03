@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.arrays_;
 
+import java.util.Arrays;
+
 public class ArraysTest {
     public static void test() {
         //System.out.println(ArrayAlgorithms1.removeDuplicatesInPlace(new int[] {0,0,1,1,1,2,2,3,3,4}));
@@ -44,7 +46,9 @@ public class ArraysTest {
 
         //System.out.println(ArrayAlgorithms4.increasingTriplet(new int[]{1,5,0,4,1,3}));
 
-        System.out.println(ArrayAlgorithms5.findMissingRanges(new int[]{0,1,3,50,75}, 0, 99));
+        //System.out.println(ArrayAlgorithms5.findMissingRanges(new int[]{0,1,3,50,75}, 0, 99));
+
+        System.out.println(Arrays.toString(ArrayAlgorithms6.productExceptSelf(new int[]{1,2,3,4})));
 
     }
 }

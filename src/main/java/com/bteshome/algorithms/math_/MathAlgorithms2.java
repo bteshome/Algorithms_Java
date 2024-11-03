@@ -73,6 +73,4 @@ public class MathAlgorithms2 {
 
         return reverse;
     }
-
-
 }
