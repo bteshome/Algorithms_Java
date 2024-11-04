@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.arrays_;
 
+import com.bteshome.algorithms.binarySearch_.BinarySearchAlgorithms3;
+
 import java.util.Arrays;
 
 public class ArraysTest {
@@ -48,7 +50,12 @@ public class ArraysTest {
 
         //System.out.println(ArrayAlgorithms5.findMissingRanges(new int[]{0,1,3,50,75}, 0, 99));
 
-        System.out.println(Arrays.toString(ArrayAlgorithms6.productExceptSelf(new int[]{1,2,3,4})));
+        //System.out.println(Arrays.toString(ArrayAlgorithms6.productExceptSelf(new int[]{1,2,3,4})));
 
+        //System.out.println(ArrayAlgorithms6.fourSumCount(new int[1], new int[]{1, 2}, new int[]{-2, -1, -2}, null));
+
+        //System.out.println(ArrayAlgorithms6.specialArray(new int[]{0,4,3,0,4}));
+        System.out.println(ArrayAlgorithms6.specialArray(new int[]{3,5}));
+        //System.out.println(ArrayAlgorithms6.specialArray(new int[]{3,6,7,7,0}));
     }
 }

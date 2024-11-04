@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
-        ArraysTest.test();
+        //ArraysTest.test();
         //StringsTest.test();
         //SortingTest.test();
         //HashTableTest.test();
@@ -32,7 +32,7 @@ public class Main {
         //SlidingWindowTest.test();
         //MatrixTest.test();
         //TreeTest.test();
-        //BinarySearchTest.test();
+        BinarySearchTest.test();
     }
 
 

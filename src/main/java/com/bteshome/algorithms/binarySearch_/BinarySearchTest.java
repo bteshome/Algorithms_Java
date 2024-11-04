@@ -15,7 +15,12 @@ public class BinarySearchTest {
 
         //System.out.println(BinarySearchAlgorithms2.searchInRotatedSortedArray(new int[]{4,5,6,7,0,1,2}, 0));
         //System.out.println(BinarySearchAlgorithms2.searchInRotatedSortedArray(new int[]{1}, 0));
-        System.out.println(BinarySearchAlgorithms2.searchInRotatedSortedArray(new int[]{3,1}, 1));
+        //System.out.println(BinarySearchAlgorithms2.searchInRotatedSortedArray(new int[]{3,1}, 1));
+
+        System.out.println(BinarySearchAlgorithms3.mySqrt(8));
+
+
+
 
     }
 }
