@@ -85,8 +85,6 @@ public class BinarySearchAlgorithms2 {
             return -1;
         }
 
-        int low = 0;
-        int high = nums.length - 1;
         int pivot = searchInRotatedSortedArray_SearchPivot(nums);
 
         int searchLeft = searchInRotatedSortedArray_SearchTarget(nums, target, 0, pivot - 1);

@@ -59,4 +59,32 @@ public class StackAlgorithms5 {
 
         return nextGreater;
     }
+
+    /*
+    * https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
+    * */
+    public static int[] finalPrices(int[] prices) {
+        if (prices == null || prices.length < 2)
+            return prices;
+
+        Stack<Integer> stack = new Stack<>();
+        int[] finalPrices = new int[prices.length];
+
+        for (int i = 0; i < prices.length; i++) {
+            int price = prices[i];
+            while (!stack.isEmpty() && price <= prices[stack.peek()]) {
+                int prevIndex = stack.pop();
+                finalPrices[prevIndex] = prices[prevIndex] - price;
+            }
+
+            stack.push(i);
+        }
+
+        while (!stack.isEmpty()) {
+            int prevIndex = stack.pop();
+            finalPrices[prevIndex] = prices[prevIndex];
+        }
+
+        return finalPrices;
+    }
 }

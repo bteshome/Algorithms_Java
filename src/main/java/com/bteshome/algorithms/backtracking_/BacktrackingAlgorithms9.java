@@ -51,6 +51,7 @@ public class BacktrackingAlgorithms9 {
 
     /**
      * https://leetcode.com/problems/all-paths-from-source-to-target/
+     * NOTE - there is an almost identical, but Graph DS based, version too.
      * */
     public static List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         var paths = new ArrayList<List<Integer>>();

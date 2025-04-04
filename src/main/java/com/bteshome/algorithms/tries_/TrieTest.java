@@ -24,6 +24,17 @@ public class TrieTest {
         //System.out.println(TrieAlgorithms3.suggestedProducts(new String[]{"mobile","mouse","moneypot","monitor","mousepad"}, "mouse"));
         //System.out.println(TrieAlgorithms3.suggestedProducts(new String[]{"havana"}, "tatiana"));
 
-        System.out.println(TrieAlgorithms3.lexicalOrder(13));
+        //System.out.println(TrieAlgorithms3.lexicalOrder(13));
+
+        /*char[][] board = new char[][]{
+                new char[]{'o','a','a','n'},
+                new char[]{'e','t','a','e'},
+                new char[]{'i','h','k','r'},
+                new char[]{'i','f','l','v'}
+        };
+        String[] words = new String[] {"oath","pea","eat","rain"};*/
+
+        System.out.println(TrieAlgorithms4.longestWord(new String[]{ "w","wo","wor","worl","world" }));
+
     }
 }

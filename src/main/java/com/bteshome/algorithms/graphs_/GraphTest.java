@@ -1,8 +1,10 @@
 package com.bteshome.algorithms.graphs_;
 
 import com.bteshome.algorithms.graphs_.bfs.BFSAlgorithms3;
+import com.bteshome.algorithms.graphs_.bfs.BFSAlgorithms4;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms5;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms6;
+import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms7;
 
 import java.util.List;
 
@@ -74,11 +76,17 @@ public class GraphTest {
 
         //System.out.println(DFSAlgorithms5.alienOrder(new String[]{"wrt","wrf","er","ett","rftt"}));
 
-        System.out.println(DFSAlgorithms6.canVisitAllRooms(List.of(
+        /*System.out.println(DFSAlgorithms6.canVisitAllRooms(List.of(
                 List.of(1),
                 List.of(2),
                 List.of(3),
                 List.of()
-        )));
+        )));*/
+
+        /*System.out.println(DFSAlgorithms7.validTree(2, new int[][]{
+                new int[]{1, 0}
+        }));*/
+
+        System.out.println(BFSAlgorithms4.canMeasureWater(2, 6, 5));
     }
 }

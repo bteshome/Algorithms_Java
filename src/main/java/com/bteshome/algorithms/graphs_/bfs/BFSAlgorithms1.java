@@ -12,23 +12,22 @@ public class BFSAlgorithms1 {
      * https://leetcode.com/problems/find-if-path-exists-in-graph/description/?envType=problem-list-v2&envId=graph&difficulty=EASY
      * */
     public static boolean validPath(int n, int[][] edges, int source, int destination) {
-        if (edges == null || n < 1 || source >= n || destination >= n) {
+        if (source < 0 || destination < 0 || source >= n || destination >= n)
             return false;
-        }
 
-        if (source == destination) {
+        if (source == destination)
             return true;
-        }
+
+        if (edges == null || edges.length == 0)
+            return false;
 
         var g = new Graph<Integer>(false);
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
             g.addVertex(i);
-        }
 
-        for (int[] edge : edges) {
+        for (int[] edge : edges)
             g.addEdge(edge[0], edge[1]);
-        }
 
         Queue<Vertex<Integer>> q = new LinkedList<Vertex<Integer>>();
         var start = g.getVertices().get(source);

@@ -25,7 +25,7 @@ public class TwoPointerAlgorithms2 {
             } else if (sum < target) {
                 low++;
             } else {
-                high++;
+                high--;
             }
         }
 

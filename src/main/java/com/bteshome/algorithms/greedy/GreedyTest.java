@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.greedy;
 
+import java.util.PriorityQueue;
+
 public class GreedyTest {
     public static void test() {
         //System.out.println(GreedyAlgorithms1.minimumOperations(new int[]{1,5,0,3,5}));
@@ -41,8 +43,11 @@ public class GreedyTest {
                 new int[]{1,3}
         }));*/
 
-        System.out.println(GreedyAlgorithms3.minimumHealth(new int[] {2,7,4,3}, 4));
+        //System.out.println(GreedyAlgorithms3.minimumHealth(new int[] {2,7,4,3}, 4));
 
+        //System.out.println(GreedyAlgorithms4.arrayPairSum(new int[] {6,2,6,5,1,2}));
+
+        System.out.println(GreedyAlgorithms5.maxKElements(new int[]{10,10,10,10,10}, 5));
 
     }
 }

@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.backtracking_;
 
+import java.util.*;
+
 public class BacktrackingTest {
     public static void test() {
         //System.out.println(BacktrackingAlgorithms.generateParenthesis(3));
@@ -66,13 +68,17 @@ public class BacktrackingTest {
                 new int[]{1,2,6},
                 new int[]{7,4,6}
         }));*/
-        System.out.println(BacktrackingAlgorithms9.maximumMinimumPath(new int[][]{
+        /*System.out.println(BacktrackingAlgorithms9.maximumMinimumPath(new int[][]{
                 new int[]{1,3,1,1,2,0},
                 new int[]{0,1,3,0,1,2},
                 new int[]{0,2,2,1,0,3},
                 new int[]{1,3,3,0,3,1},
                 new int[]{1,1,2,3,2,2},
                 new int[]{0,1,3,2,2,1}
-        }));
+        }));*/
+
+        System.out.println(BacktrackingAlgorithms10.combinationSum(new int[]{2,3,6,7}, 7));
+
     }
 }
+

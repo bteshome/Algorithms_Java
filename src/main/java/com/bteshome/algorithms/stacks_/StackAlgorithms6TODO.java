@@ -91,4 +91,27 @@ public class StackAlgorithms6TODO {
 
         return 0;
     }
+
+    // TODO
+    public static int findLengthOfShortestSubarray(int[] a) {
+        if (a == null || a.length < 2)
+            return 0;
+
+        int fromLeft = 0;
+        int fromRight = 0;
+
+        for (int i = 0; i < a.length; i++) {
+            if (i > 0 && a[i] < a[i-1])
+                break;
+            fromLeft = i;
+        }
+
+        for (int i = a.length - 1; i >= 0; i--) {
+            if (i < a.length - 1 && a[i] > a[i+1])
+                break;
+            fromRight = i;
+        }
+
+        return 0;
+    }
 }

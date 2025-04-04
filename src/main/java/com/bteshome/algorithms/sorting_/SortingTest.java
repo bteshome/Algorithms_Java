@@ -15,9 +15,12 @@ public class SortingTest {
         int[] b = a.clone();
         SortingAlgorithms1.doBucketSort(a, b);*/
 
-        int[] a = new int[]{2,0,2,1,1,0};
+        /*int[] a = new int[]{2,0,2,1,1,0};
         //int[] a = new int[]{1,0,0};
         SortingAlgorithms1.sortColors(a);
-        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(a));*/
+
+        System.out.println(SortingAlgorithms2.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
+
     }
 }

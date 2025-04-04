@@ -48,7 +48,7 @@ public class TrieAlgorithms1 {
     }
 
     /**
-     * https://leetcode.com/problems/replace-words/?envType=problem-list-v2&envId=trie&difficulty=MEDIUM
+     * https://leetcode.com/problems/replace-words
      * */
     public static String replaceWords(List<String> dictionary, String sentence) {
         if (dictionary == null || sentence == null || dictionary.isEmpty() || sentence.isEmpty()) {
@@ -57,47 +57,35 @@ public class TrieAlgorithms1 {
 
         var trie = new Trie();
         var root = trie.getRoot();
-        for (String word : dictionary) {
-            trie.insert(word);
+        var buffer = new StringBuilder();
+
+        for (String rootWord : dictionary)
+            trie.insert(rootWord);
+
+        for (String word : sentence.split(" ")) {
+            String rootWord = search2(root, word);
+            if (!buffer.isEmpty())
+                buffer.append(" ");
+            buffer.append(rootWord);
         }
 
-        var startIndex = 0;
-        var spaceIndex = -1;
-        var replacements = new StringBuilder();
-
-        do {
-            spaceIndex = replaceWords(sentence, root, startIndex, replacements);
-            startIndex = spaceIndex + 1;
-        } while (spaceIndex != -1);
-
-        return replacements.toString();
+        return buffer.toString();
     }
 
-    private static int replaceWords(String sentence, Node node, int startIndex, StringBuilder replacements) {
-        var path = new StringBuilder();
-        var spaceIndex = sentence.indexOf(' ', startIndex);
-        var word = sentence.substring(startIndex, (spaceIndex != -1 ? spaceIndex : sentence.length()));
-        var replacement = word;
+    private static String search2(Node root, String word) {
+        Node current = root;
+        StringBuilder rootWord = new StringBuilder();
 
-        for (int i = startIndex; i < (spaceIndex != -1 ? spaceIndex : sentence.length()); i++) {
-            var c = sentence.charAt(i);
-            if (!node.getChildren().containsKey(c)) {
-                break;
-            }
-            node = node.getChildren().get(c);
-            path.append(c);
-            if (node.isWord()) {
-                replacement = path.toString();
-                break;
-            }
+        for (int i = 0; i < word.length(); i++) {
+            if (current.isWord())
+                return rootWord.toString();
+            char c = word.charAt(i);
+            if (!current.getChildren().containsKey(c))
+                return word;
+            current = current.getChildren().get(c);
+            rootWord.append(c);
         }
 
-        if (startIndex > 0) {
-            replacements.append(" ");
-        }
-
-        replacements.append(replacement);
-
-        return spaceIndex;
+        return word;
     }
 }

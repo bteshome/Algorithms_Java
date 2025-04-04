@@ -1,6 +1,9 @@
 package com.bteshome.algorithms.stacks_;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 public class StackAlgorithms1 {
@@ -83,6 +86,38 @@ public class StackAlgorithms1 {
         }
 
         return open.isEmpty();
+    }
+
+    public static boolean validParentheses2(String s) {
+        if (s == null)
+            return false;
+        if (s.isEmpty())
+            return true;
+
+        Stack<Character> stack = new Stack<>();
+        Map<Character, Character> pairs = new HashMap<>();
+        Set<Character> closers = new HashSet<>();
+
+        pairs.put('(', ')');
+        pairs.put('[', ']');
+        pairs.put('{', '}');
+        closers.add(')');
+        closers.add(']');
+        closers.add('}');
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (pairs.containsKey(c)) {
+                stack.push(c);
+            } else if (closers.contains(c)) {
+                if (stack.isEmpty() || pairs.get(stack.pop()) != c)
+                    return false;
+            } else {
+                return false;
+            }
+        }
+
+        return stack.isEmpty();
     }
 
     /**

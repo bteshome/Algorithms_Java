@@ -1,6 +1,6 @@
 package com.bteshome.algorithms.disjointSets_;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class DisjointSetsTest {
     public static void test() {
@@ -25,10 +25,26 @@ public class DisjointSetsTest {
                 new int[]{2, 1}
         }));*/
 
-        System.out.println(Arrays.toString(DisjointSetsAlgorithms2.findRedundantConnection(new int[][]{
+        /*System.out.println(Arrays.toString(DisjointSetsAlgorithms2.findRedundantConnection(new int[][]{
                 new int[]{1, 2},
                 new int[]{1, 3},
                 new int[]{2, 3}
-        })));
+        })));*/
+
+        /*List<List<String>> synonyms = List.of(
+                List.of("happy","joy"),
+                List.of("sad","sorrow"),
+                List.of("joy","cheerful"));
+        System.out.println(DisjointSetsAlgorithms3.getSetElements(synonyms));*/
+
+        /*List<List<String>> synonyms = List.of(
+                List.of("happy","joy"),
+                List.of("sad","sorrow"),
+                List.of("joy","cheerful"));
+        String text = "I am happy today but was sad yesterday";
+        List<String> sentences = DisjointSetsAlgorithms3.generateSentences(synonyms, text);
+        for (String sentence : sentences)
+            System.out.println(sentence);*/
+
     }
 }

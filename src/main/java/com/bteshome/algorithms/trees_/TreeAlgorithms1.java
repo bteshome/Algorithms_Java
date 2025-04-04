@@ -46,15 +46,12 @@ public class TreeAlgorithms1 {
      * https://leetcode.com/problems/binary-tree-level-order-traversal/
      */
     public static List<List<Integer>> levelOrder(TreeNode root) {
-        var traversal = new ArrayList<List<Integer>>();
+        if (root == null)
+            return List.of();
 
-        if (root == null) {
-            return traversal;
-        }
+        record Entry(int level, TreeNode node) { }
 
-        record Entry(int level, TreeNode node) {
-        }
-
+        Map<Integer, List<Integer>> traversal = new TreeMap<>();
         Queue<Entry> q = new ArrayDeque<>();
         q.offer(new Entry(0, root));
 
@@ -63,21 +60,18 @@ public class TreeAlgorithms1 {
             int parentLevel = front.level();
             int childLevel = parentLevel + 1;
 
-            if (traversal.size() == front.level()) {
-                traversal.add(new ArrayList<>());
-            }
+            if (!traversal.containsKey(parentLevel))
+                traversal.put(parentLevel, new ArrayList<>());
             traversal.get(parentLevel).add(front.node.val);
 
-            if (front.node.left != null) {
+            if (front.node.left != null)
                 q.offer(new Entry(childLevel, front.node.left));
-            }
 
-            if (front.node.right != null) {
+            if (front.node.right != null)
                 q.offer(new Entry(childLevel, front.node.right));
-            }
         }
 
-        return traversal;
+        return traversal.values().stream().toList();
     }
 
     /**

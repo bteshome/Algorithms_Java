@@ -1,16 +1,35 @@
 package com.bteshome.algorithms.slidingWindows_;
 
 import java.awt.geom.Arc2D;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class SlidingWindowAlgorithms1 {
     /**
      * https://leetcode.com/problems/contains-duplicate-ii/
      * */
-    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        if (nums == null || nums.length < 2)
+            return false;
+
+        if (k <= 0)
+            return false;
+
+        Map<Integer, Integer> positions = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (positions.containsKey(num) && i - positions.get(num) <= k)
+                return true;
+            positions.put(num, i);
+        }
+
+        return false;
+    }
+
+    /*
+    * This one is slower.
+    * */
+    public static boolean containsNearbyDuplicate2(int[] nums, int k) {
         if (nums == null || nums.length < 2) {
             return false;
         }
@@ -32,6 +51,26 @@ public class SlidingWindowAlgorithms1 {
             frequencies.put(rightNum, frequencies.getOrDefault(rightNum, 0) + 1);
             if (frequencies.get(rightNum) > 1) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*
+    * This one is slower than both.
+    * */
+    public boolean containsNearbyDuplicate3(int[] nums, int k) {
+        if (nums == null || nums.length < 2)
+            return false;
+
+        if (k <= 0)
+            return false;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j <= Math.min(i + k, nums.length - 1); j++) {
+                if (nums[i] == nums[j])
+                    return true;
             }
         }
 

@@ -70,15 +70,17 @@ public class DPTest {
         };
         System.out.println(DPAlgorithms11.paintHouse(costs));*/
 
-        var costs = new int[][]{
+        /*var costs = new int[][]{
                 new int[]{1,5,3}, new int[]{2,9,4}
         };
-        System.out.println(DPAlgorithms11.paintHouseII(costs));
+        System.out.println(DPAlgorithms11.paintHouseII(costs));*/
 
         //System.out.println(DPAlgorithms11.paintFenceRecursiveTODO(7, 2));
 
         //System.out.println(DPAlgorithms12.coinChange(new int[]{1, 2, 5}, 11));
         //System.out.println(DPAlgorithms12.coinChangeII(5, new int[]{1, 2, 5}));
+
+        //System.out.println(DPAlgorithms13.wordBreak("leetcode", List.of("leet", "code")));
 
 
     }

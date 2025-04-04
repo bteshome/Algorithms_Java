@@ -1,8 +1,12 @@
 package com.bteshome.algorithms.greedy;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class GreedyAlgorithms1 {
+    /**
+     * https://leetcode.com/problems/make-array-zero-by-subtracting-equal-amounts/
+     * */
     public static int minimumOperations(int[] nums) {
         if (nums == null) {
             return 0;
@@ -38,23 +42,63 @@ public class GreedyAlgorithms1 {
         return operations;
     }
 
+    // NOTE - the first solution is faster
+    public static int minimumOperations_UsingPriorityQueue(int[] nums) {
+        if (nums == null)
+            return 0;
+
+        PriorityQueue<Integer> q1 = new PriorityQueue<>();
+        PriorityQueue<Integer> q2 = new PriorityQueue<>();
+
+        int operations = 0;
+
+        for (int num : nums) {
+            if (num > 0)
+                q1.offer(num);
+        }
+
+        while (!q1.isEmpty()) {
+            int decrement = q1.peek();
+            while (!q1.isEmpty()) {
+                int next = q1.poll();
+                next -= decrement;
+                if (next > 0)
+                    q2.offer(next);
+            }
+            PriorityQueue<Integer> temp = q1;
+            q1 = q2;
+            q2 = temp;
+            operations++;
+        }
+
+        return operations;
+    }
+
     /**
      * https://leetcode.com/problems/can-place-flowers
      * */
     public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-        int available = 0;
+        if (flowerbed == null || flowerbed.length < 1 || n < 0)
+            return false;
 
         for (int i = 0; i < flowerbed.length; i++) {
-            if (flowerbed[i] == 0 && (i == 0 || flowerbed[i - 1] == 0) && (i == flowerbed.length - 1 || flowerbed[i + 1] == 0)) {
-                available++;
-                flowerbed[i] = 1;
-            }
-            if (available >= n) {
-                return true;
-            }
+            if (n == 0)
+                break;
+
+            if (flowerbed[i] == 1)
+                continue;
+
+            if (i > 0 && flowerbed[i - 1] == 1)
+                continue;
+
+            if (i < flowerbed.length - 1 && flowerbed[i + 1] == 1)
+                continue;
+
+            flowerbed[i] = 1;
+            n--;
         }
 
-        return false;
+        return n == 0;
     }
 
     /**

@@ -29,6 +29,34 @@ public class ArrayAlgorithms6 {
         return output;
     }
 
+    public static int[] productExceptSelf2(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return new int[0];
+
+        int product = 1;
+        int numZeros = 0;
+        int[] products = new int[nums.length];
+
+        for (int num : nums) {
+            if (num == 0)
+                numZeros++;
+            else
+                product *= num;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (numZeros > 1)
+                products[i] = 0;
+            else if (numZeros == 1)
+                products[i] = num == 0 ? product : 0;
+            else
+                products[i] = product / num;
+        }
+
+        return products;
+    }
+
     public static int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
         System.out.println(threeSum(nums1, nums2, nums3, 0));
 

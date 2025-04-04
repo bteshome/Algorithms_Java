@@ -103,6 +103,61 @@ public class HeapAlgorithms10 {
     }
 
     /**
+     * https://leetcode.com/problems/top-k-frequent-words/
+     * */
+    public static List<String> topKFrequentWord(String[] words, int k) {
+        if (words == null || words.length == 0 || k < 1)
+            return List.of();
+
+        class Word {
+            public String word;
+            public int frequency;
+            public Word(String word, int frequency) {
+                this.word = word;
+                this.frequency = frequency;
+            }
+        }
+
+        Map<String, Integer> frequencies = new HashMap<>();
+        PriorityQueue<Word> ordering = new PriorityQueue<>((a, b) -> {
+            if (a.frequency == b.frequency)
+                return b.word.compareTo(a.word);
+            return a.frequency - b.frequency;
+        });
+        Stack<String> reverser = new Stack<>();
+        List<String> result = new ArrayList<>(ordering.size());
+
+        for (String word : words) {
+            if (!frequencies.containsKey(word))
+                frequencies.put(word, 1);
+            else
+                frequencies.put(word, frequencies.get(word) + 1);
+        }
+
+        for (Map.Entry<String, Integer> e : frequencies.entrySet()) {
+            if (ordering.size() < k)
+                ordering.offer(new Word(e.getKey(), e.getValue()));
+            else if (e.getValue() > ordering.peek().frequency) {
+                ordering.poll();
+                ordering.offer(new Word(e.getKey(), e.getValue()));
+            } else if (e.getValue() == ordering.peek().frequency) {
+                if (e.getKey().compareTo(ordering.peek().word) < 0) {
+                    ordering.poll();
+                    ordering.offer(new Word(e.getKey(), e.getValue()));
+                }
+            }
+        }
+
+        while (!ordering.isEmpty())
+            reverser.push(ordering.poll().word);
+
+        while (!reverser.isEmpty())
+            result.add(reverser.pop());
+
+        return result;
+    }
+
+    /**
      * https://leetcode.com/problems/ugly-number-ii/
      * */
     public static int nthUglyNumber(int n) {

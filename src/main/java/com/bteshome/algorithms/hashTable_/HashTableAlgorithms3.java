@@ -5,6 +5,7 @@ import java.util.*;
 public class HashTableAlgorithms3 {
     /**
      * https://leetcode.com/problems/longest-substring-without-repeating-characters/
+     * NOTE: there is also a version that uses queue.
      * */
     public static int lengthOfLongestSubstringWithoutRepeatingCharacters(String s) {
         if (s == null || s.length() == 0) {

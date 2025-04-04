@@ -9,6 +9,10 @@ public class Node<T> {
         this.key = key;
     }
 
+    public T getKey() {
+        return key;
+    }
+
     public Node<T> getParent() {
         return parent;
     }
