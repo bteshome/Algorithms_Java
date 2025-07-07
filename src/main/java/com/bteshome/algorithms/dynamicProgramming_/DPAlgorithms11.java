@@ -1,43 +1,36 @@
 package com.bteshome.algorithms.dynamicProgramming_;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DPAlgorithms11 {
     /**
      * https://leetcode.com/problems/decode-ways/?envType=problem-list-v2&envId=dynamic-programming&difficulty=MEDIUM
      * */
-    public static int numDecodings(String s) {
-        if (s == null || s.isEmpty()) {
+    public int numDecodings(String s) {
+        if (s == null || s.isEmpty())
             return 0;
-        }
 
-        return numDecodings(s, 0, new Integer[s.length()]);
+        Map<String, Character> map = new HashMap<>();
+        for (int i = 1; i <= 26; i++)
+            map.put(Integer.toString(i), (char)('A' + i - 1));
+
+        return numDecodings(s, 0, map, new HashMap<>());
     }
 
-    public static int numDecodings(String s, int pos, Integer[] cache) {
-        if (pos == s.length()) {
+    private int numDecodings(String s, int pos, Map<String, Character> map, Map<Integer, Integer> cache) {
+        if (pos == s.length())
             return 1;
+
+        if (!cache.containsKey(pos)) {
+            int ways = 0;
+            if (map.containsKey(s.substring(pos, pos + 1)))
+                ways += numDecodings(s, pos + 1, map, cache);
+            if (pos < s.length() - 1 && map.containsKey(s.substring(pos, pos + 2)))
+                ways += numDecodings(s, pos + 2, map, cache);
+            cache.put(pos, ways);
         }
 
-        if(cache[pos] == null) {
-            var decodeWays = 0;
-
-            if (s.charAt(pos) >= '1' && s.charAt(pos) <= '9') {
-                decodeWays += numDecodings(s, pos + 1, cache);
-            }
-
-            if (pos < s.length() - 1) {
-                var cc = s.substring(pos, pos + 2);
-                if (cc.compareTo("10") >= 0 && cc.compareTo("26") <= 0) {
-                    decodeWays += numDecodings(s, pos + 2, cache);
-                }
-            }
-
-            cache[pos] = decodeWays;
-        }
-
-        return cache[pos];
+        return cache.get(pos);
     }
 
     /**
@@ -71,36 +64,35 @@ public class DPAlgorithms11 {
      * https://leetcode.com/problems/paint-house/?envType=problem-list-v2&envId=dynamic-programming&difficulty=MEDIUM
      * */
     public static int paintHouse(int[][] costs) {
-        if (costs == null) {
+        if (costs == null || costs.length == 0)
             return 0;
-        }
 
-        var cache = new Integer[costs.length][];
-        for (int i = 0; i < cache.length; i++) {
-            cache[i] = new Integer[4];
-        }
+        Integer[][] cache = new Integer[costs.length][];
+        for (int i = 0; i < costs.length; i++)
+            cache[i] = new Integer[3];
 
-        return paintHouse(costs, 0, 3, cache);
+        int redCost = minCost(costs, costs.length - 1, 0, cache);
+        int blueCost = minCost(costs, costs.length - 1, 1, cache);
+        int greenCost = minCost(costs, costs.length - 1, 2, cache);
+
+        return Math.min(Math.min(redCost, blueCost), greenCost);
     }
 
-    private static int paintHouse(int[][] costs, int pos, int prevColorCode, Integer[][] cache) {
-        if (pos == costs.length) {
-            return 0;
-        }
+    private static int minCost(int[][] costs, int pos, int color, Integer[][] cache) {
+        if (pos == 0)
+            return costs[pos][color];
 
-        if (cache[pos][prevColorCode] == null) {
+        if (cache[pos][color] == null) {
             int cost = Integer.MAX_VALUE;
 
-            for (int colorCode = 0; colorCode < 3; colorCode++) {
-                if (colorCode != prevColorCode) {
-                    cost = Math.min(cost, costs[pos][colorCode] + paintHouse(costs, pos + 1, colorCode, cache));
-                }
-            }
+            for (int i = 0; i < 3; i++)
+                if (i != color)
+                    cost = Math.min(cost, minCost(costs, pos - 1, i, cache));
 
-            cache[pos][prevColorCode] = cost;
+            cache[pos][color] = cost + costs[pos][color];
         }
 
-        return cache[pos][prevColorCode];
+        return cache[pos][color];
     }
 
     /**
@@ -143,44 +135,34 @@ public class DPAlgorithms11 {
     }
 
     /**
-     * TODO - threw 'Memory Limit Exceeded'
      * https://leetcode.com/problems/paint-fence/?envType=problem-list-v2&envId=dynamic-programming&difficulty=MEDIUM
      * */
-    public static int paintFenceRecursiveTODO(int n, int k) {
-        if (n < 0 || k < 0) {
+    public static int paintFence(int n, int k) {
+        if (n < 1 || k < 1)
             return 0;
+        if (n == 1)
+            return k;
+        if (n == 2)
+            return k * k;
+
+        int[][] dp = new int[n][];
+        for (int i = 0; i < n; i++)
+            dp[i] = new int[k];
+
+        for (int j = 0; j < k; j++) {
+            dp[0][j] = 1;
+            dp[1][j] = k;
         }
 
-        var cache = new Integer[n][][];
-        for (int i = 0; i < n; i++) {
-            cache[i] = new Integer[k + 1][];
-            for (int j = 0; j <= k; j++) {
-                cache[i][j] = new Integer[k + 1];
-            }
-        }
+        for (int i = 2; i < n; i++)
+            for (int j = 0; j < k; j++) {
+                for (int c = 0; c < k; c++)
+                    if (c != j)
+                        dp[i][j] += dp[i - 1][c];
 
-        return paintFenceRecursiveTODO(n, k, 0, k, k, cache);
-    }
-
-    public static int paintFenceRecursiveTODO(int n, int k, int pos, int prevPrevColor, int prevColor, Integer[][][] cache) {
-        if (pos == n) {
-            return 1;
-        }
-
-        if (cache[pos][prevPrevColor][prevColor] == null) {
-            int ways = 0;
-
-            for (int color = 0; color < k; color++) {
-                if (!((prevPrevColor == prevColor) && (prevColor == color))) {
-                    ways += paintFenceRecursiveTODO(n, k, pos + 1, prevColor, color, cache);
-                }
+                dp[i][j] += dp[i - 2][j] * (k - 1);
             }
 
-            cache[pos][prevPrevColor][prevColor] = ways;
-        }
-
-        return cache[pos][prevPrevColor][prevColor];
+        return Arrays.stream(dp[n - 1]).sum();
     }
-
-
 }

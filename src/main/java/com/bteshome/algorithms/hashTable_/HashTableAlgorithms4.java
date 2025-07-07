@@ -1,9 +1,6 @@
 package com.bteshome.algorithms.hashTable_;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.TreeSet;
+import java.util.*;
 
 public class HashTableAlgorithms4 {
     /**
@@ -55,5 +52,20 @@ public class HashTableAlgorithms4 {
             int randomIndex = random.nextInt(0, indexToValue.size());
             return indexToValue.get(randomIndex);
         }
+    }
+
+    /**
+     * https://leetcode.com/problems/index-pairs-of-a-string/
+     * */
+    public static int[][] indexPairs(String text, String[] words) {
+        List<int[]> pairs = new ArrayList<>();
+        Set<String> wordsSet = new HashSet<>(Arrays.asList(words));
+
+        for (int i = 0; i < text.length(); i++)
+            for (int j = i; j < text.length(); j++)
+                if (wordsSet.contains(text.substring(i, j + 1)))
+                    pairs.add(new int[]{i, j});
+
+        return pairs.toArray(new int[0][]);
     }
 }

@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.tries_;
 
+import com.bteshome.T;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,36 +58,27 @@ public class TrieAlgorithms1 {
         }
 
         var trie = new Trie();
-        var root = trie.getRoot();
-        var buffer = new StringBuilder();
+        String[] sentenceParts = sentence.split(" ");
 
-        for (String rootWord : dictionary)
-            trie.insert(rootWord);
+        for (String word : dictionary)
+            trie.insert(word);
 
-        for (String word : sentence.split(" ")) {
-            String rootWord = search2(root, word);
-            if (!buffer.isEmpty())
-                buffer.append(" ");
-            buffer.append(rootWord);
+        for (int i = 0; i < sentenceParts.length; i++) {
+            String part = sentenceParts[i];
+            Node current = trie.getRoot();
+
+            for (int j = 0; j < part.length(); j++) {
+                char c = part.charAt(j);
+                if (!current.getChildren().containsKey(c))
+                    break;
+                current = current.getChildren().get(c);
+                if (current.isWord()) {
+                    sentenceParts[i] = part.substring(0, j + 1);
+                    break;
+                }
+            }
         }
 
-        return buffer.toString();
-    }
-
-    private static String search2(Node root, String word) {
-        Node current = root;
-        StringBuilder rootWord = new StringBuilder();
-
-        for (int i = 0; i < word.length(); i++) {
-            if (current.isWord())
-                return rootWord.toString();
-            char c = word.charAt(i);
-            if (!current.getChildren().containsKey(c))
-                return word;
-            current = current.getChildren().get(c);
-            rootWord.append(c);
-        }
-
-        return word;
+        return String.join(" ", sentenceParts);
     }
 }

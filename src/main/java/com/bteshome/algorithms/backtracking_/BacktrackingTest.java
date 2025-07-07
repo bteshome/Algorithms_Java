@@ -1,5 +1,7 @@
 package com.bteshome.algorithms.backtracking_;
 
+import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms24;
+
 import java.util.*;
 
 public class BacktrackingTest {
@@ -77,8 +79,26 @@ public class BacktrackingTest {
                 new int[]{0,1,3,2,2,1}
         }));*/
 
-        System.out.println(BacktrackingAlgorithms10.combinationSum(new int[]{2,3,6,7}, 7));
+        //System.out.println(BacktrackingAlgorithms10.combinationSum(new int[]{2,3,6,7}, 7));
 
+        int[][] arr = {
+                {0, 1},
+                {1, 0},
+                {0, 1},
+                {1, 2},
+                {2, 0},
+                {3, 4}
+        };
+        int[][] arr2 = {
+                {0, 3},
+                {3, 1},
+                {1, 2},
+                {2, 0}
+        };
+        int[][] arr3 = new int[16][2];
+        //System.out.println(BacktrackingAlgorithms10.maximumRequests(5, arr));
+        //System.out.println(BacktrackingAlgorithms10.maximumRequests(4, arr2));
+        System.out.println(BacktrackingAlgorithms10.maximumRequests(16, arr3));
     }
 }
 

@@ -26,24 +26,19 @@ public class Main {
         //HashTableTest.test();
         //TwoPointerTest.test();
         //MathTest.test();
-        //DPTest.test();
+        DPTest.test();
         //BacktrackingTest.test();
         //GraphTest.test();
         //TrieTest.test();
         //DisjointSetsTest.test();
         //HeapTest.test();
         //GreedyTest.test();
-        StackTest.test();
+        //StackTest.test();
         //QueueTest.test();
         //StreamTest.test();
         //SlidingWindowTest.test();
         //MatrixTest.test();
         //TreeTest.test();
         //BinarySearchTest.test();
-
-
     }
-
-
-
 }
