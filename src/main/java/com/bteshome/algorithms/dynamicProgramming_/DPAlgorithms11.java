@@ -98,7 +98,7 @@ public class DPAlgorithms11 {
     /**
      * https://leetcode.com/problems/paint-house-ii/?envType=study-plan-v2&envId=premium-algo-100
      * */
-    public static int paintHouseII(int[][] costs) {
+    public static int paintHouseIITopDown(int[][] costs) {
         if (costs == null || costs.length == 0) {
             return 0;
         }
@@ -108,10 +108,10 @@ public class DPAlgorithms11 {
             cache[i] = new Integer[costs[i].length + 1];
         }
 
-        return paintHouseII(costs, 0, costs[0].length, cache);
+        return paintHouseIITopDown(costs, 0, costs[0].length, cache);
     }
 
-    private static int paintHouseII(int[][] costs, int pos, int prevColor, Integer[][] cache) {
+    private static int paintHouseIITopDown(int[][] costs, int pos, int prevColor, Integer[][] cache) {
         if (pos == costs.length) {
             return 0;
         }
@@ -121,7 +121,7 @@ public class DPAlgorithms11 {
 
             for (int color = 0; color < costs[pos].length; color++) {
                 if (color != prevColor) {
-                    var nextCost = paintHouseII(costs, pos + 1, color, cache);
+                    var nextCost = paintHouseIITopDown(costs, pos + 1, color, cache);
                     if (nextCost != -1) {
                         minCost = Math.min(minCost, costs[pos][color] + nextCost);
                     }
@@ -132,6 +132,34 @@ public class DPAlgorithms11 {
         }
 
         return cache[pos][prevColor];
+    }
+
+    public static int paintHouseIIBottomUp(int[][] costs) {
+        if (costs == null || costs.length == 0 || costs[0].length == 0)
+            return 0;
+
+        int n = costs.length;
+        int k = costs[0].length;
+
+        int[][] dp = new int[n][k];
+        for (int j = 0; j < k; j++)
+            dp[0][j] = costs[0][j];
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < k; j++) {
+                int min = Integer.MAX_VALUE;
+                for (int l = 0; l < k; l++)
+                    if (l != j)
+                        min = Math.min(min, dp[i - 1][l]);
+                dp[i][j] = min + costs[i][j];
+            }
+        }
+
+        int min = Integer.MAX_VALUE;
+        for (int j = 0; j < k; j++)
+            min = Math.min(min, dp[n - 1][j]);
+
+        return min;
     }
 
     /**

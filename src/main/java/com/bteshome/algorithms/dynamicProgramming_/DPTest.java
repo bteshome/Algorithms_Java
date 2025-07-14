@@ -1,5 +1,8 @@
 package com.bteshome.algorithms.dynamicProgramming_;
 
+import com.bteshome.algorithms.twoPointers_.TwoPointerAlgorithms1;
+import com.bteshome.algorithms.twoPointers_.TwoPointerAlgorithms5;
+
 public class DPTest {
     public static void test() {
         //System.out.println(DPAlgorithms1.climbStairsIterative(3));
@@ -44,12 +47,16 @@ public class DPTest {
         System.out.println(DPAlgorithms10.uniquePathsWithObstaclesBottomUp(obstacleGrid));
         System.out.println(DPAlgorithms10.uniquePathsWithObstaclesTopDown(obstacleGrid));*/
 
-        //System.out.println(DPAlgorithms7.isInterleaveBruteforce("aabcc", "dbbca", "aadbbcbcac"));
-        //System.out.println(DPAlgorithms7.isInterleaveBruteforce("", "a", "a"));
-        //System.out.println(DPAlgorithms7.isInterleaveBruteforce("a", "", "c"));
-        //System.out.println(DPAlgorithms7.isInterleaveTODO("a", "", "c"));
+        /*System.out.println(DPAlgorithms7.isInterleaveTopDown("aabcc", "dbbca", "aadbbcbcac"));
+        System.out.println(DPAlgorithms7.isInterleaveTopDown("aabcc", "dbbca", "aadbbbaccc"));
+        System.out.println(DPAlgorithms7.isInterleaveTopDown("", "", ""));*/
 
         //System.out.println(DPAlgorithms7.minDistance("horse", "ros"));
+
+        /*System.out.println(DPAlgorithms7.numDistinctTopDown("rabbbit", "rabbit"));
+        System.out.println(DPAlgorithms7.numDistinctTopDown("babgbag", "bag"));
+        System.out.println(DPAlgorithms7.numDistinctBottomUp("rabbbit", "rabbit"));
+        System.out.println(DPAlgorithms7.numDistinctBottomUp("babgbag", "bag"));*/
 
         //System.out.println(DPAlgorithms9.canJump(new int[]{2,3,1,1,4}));
 
@@ -73,7 +80,8 @@ public class DPTest {
         /*var costs = new int[][]{
                 new int[]{1,5,3}, new int[]{2,9,4}
         };
-        System.out.println(DPAlgorithms11.paintHouseII(costs));*/
+        System.out.println(DPAlgorithms11.paintHouseIITopDown(costs));
+        System.out.println(DPAlgorithms11.paintHouseIIBottomUp(costs));*/
 
         //System.out.println(DPAlgorithms11.paintFenceRecursiveTODO(7, 2));
 
@@ -106,7 +114,28 @@ public class DPTest {
 
         //System.out.println(DPAlgorithms17.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6}));
 
-        /*System.out.println(DPAlgorithms17.cherryPickup(new int[][]{
+        /*int[][] array1 = {
+                {0, 1, -1},
+                {1, 0, -1},
+                {1, 1, 1}
+        };
+        int[][] array2 = {
+                {1, 1, -1},
+                {1, -1, 1},
+                {-1, 1, 1}
+        };
+        System.out.println(DPAlgorithms17.cherryPickupTopDown(array1));
+        System.out.println(DPAlgorithms17.cherryPickupTopDown(array2));
+        System.out.println(DPAlgorithms17.cherryPickupBottomUp(array1));
+        System.out.println(DPAlgorithms17.cherryPickupBottomUp(array2));*/
+
+        /*System.out.println(DPAlgorithms17.cherryPickupIITopDown(new int[][]{
+                new int[]{3,1,1},
+                new int[]{2,5,1},
+                new int[]{1,5,5},
+                new int[]{2,1,1}
+        }));
+        System.out.println(DPAlgorithms17.cherryPickupIIBottomUp(new int[][]{
                 new int[]{3,1,1},
                 new int[]{2,5,1},
                 new int[]{1,5,5},
@@ -180,9 +209,6 @@ public class DPTest {
         //System.out.println(DPAlgorithms24.isScramble("great", "rgeat"));
         //System.out.println(DPAlgorithms24.isScramble("abcde", "caebd"));
 
-        //System.out.println(DPAlgorithms24.probabilityOfHeads(new double[]{0.4}, 1));
-        //System.out.println(DPAlgorithms24.probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
-
         //System.out.println(DPAlgorithms24.bestTeamScore(new int[]{1,3,5,10,15}, new int[]{1,2,3,4,5}));
         //System.out.println(DPAlgorithms24.bestTeamScore(new int[]{4,5,6,5}, new int[]{2,1,2,1}));
 
@@ -214,11 +240,174 @@ public class DPTest {
         System.out.println(DPAlgorithms27.stoneGameIIIBottomUp(new int[]{1,2,3,6}));
         System.out.println(DPAlgorithms27.stoneGameIIIBottomUp(new int[]{-1,-2,-3}));*/
 
-        System.out.println(DPAlgorithms27.winnerSquareGameTopDown(1));
+        /*System.out.println(DPAlgorithms27.winnerSquareGameTopDown(1));
         System.out.println(DPAlgorithms27.winnerSquareGameTopDown(2));
         System.out.println(DPAlgorithms27.winnerSquareGameTopDown(4));
         System.out.println(DPAlgorithms27.winnerSquareGameBottomUp(1));
         System.out.println(DPAlgorithms27.winnerSquareGameBottomUp(2));
-        System.out.println(DPAlgorithms27.winnerSquareGameBottomUp(4));
+        System.out.println(DPAlgorithms27.winnerSquareGameBottomUp(4));*/
+
+        /*System.out.println(DPAlgorithms28.stoneGameVTopDown(new int[]{6,2,3,4,5,5}));
+        System.out.println(DPAlgorithms28.stoneGameVTopDown(new int[]{7,7,7,7,7,7,7}));*/
+
+        /*System.out.println(DPAlgorithms28.stoneGameVIITopDown(new int[]{5,3,1,4,2}));
+        System.out.println(DPAlgorithms28.stoneGameVIITopDown(new int[]{7,90,5,1,100,10,10,2}));
+        System.out.println(DPAlgorithms28.stoneGameVIIBottomUp(new int[]{5,3,1,4,2}));
+        System.out.println(DPAlgorithms28.stoneGameVIIBottomUp(new int[]{7,90,5,1,100,10,10,2}));*/
+
+        //System.out.println(DPAlgorithms32.probabilityOfHeads(new double[]{0.4}, 1));
+        //System.out.println(DPAlgorithms32.probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
+
+        /*System.out.println(DPAlgorithms32.knightProbability(3, 2, 0, 0));
+        System.out.println(DPAlgorithms32.knightProbability(1, 0, 0, 0));*/
+
+        /*int[][] array = {
+                {1, 2, 4},
+                {3, 4, 3},
+                {2, 3, 1}
+        };
+        int[][] array2 = {
+                {1, 2, 4},
+                {3, 4, 3},
+                {2, 3, 10}
+        };
+        int[][] array3 = {
+                {1, 1, 1},
+                {2, 2, 2},
+                {3, 3, 3},
+                {4, 4, 4}
+        };
+        System.out.println(DPAlgorithms29.maxValueTopDown(array, 2));
+        System.out.println(DPAlgorithms29.maxValueTopDown(array2, 2));
+        System.out.println(DPAlgorithms29.maxValueTopDown(array3, 3));
+        System.out.println(DPAlgorithms29.maxValueBottomUp(array, 2));
+        System.out.println(DPAlgorithms29.maxValueBottomUp(array2, 2));
+        System.out.println(DPAlgorithms29.maxValueBottomUp(array3, 3));*/
+
+        /*System.out.println(DPAlgorithms30.jobSchedulingTopDown(new int[]{1,2,3,3}, new int[]{3,4,5,6}, new int[]{50,10,40,70}));
+        System.out.println(DPAlgorithms30.jobSchedulingTopDown(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60}));
+        System.out.println(DPAlgorithms30.jobSchedulingTopDown(new int[]{1,1,1}, new int[]{2,3,4}, new int[]{5,6,4}));
+        System.out.println(DPAlgorithms30.jobSchedulingBottomUp(new int[]{1,2,3,3}, new int[]{3,4,5,6}, new int[]{50,10,40,70}));
+        System.out.println(DPAlgorithms30.jobSchedulingBottomUp(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60}));
+        System.out.println(DPAlgorithms30.jobSchedulingBottomUp(new int[]{1,1,1}, new int[]{2,3,4}, new int[]{5,6,4}));*/
+
+        /*System.out.println(DPAlgorithms31.countVowelPermutationBottomUp(1));
+        System.out.println(DPAlgorithms31.countVowelPermutationBottomUp(2));
+        System.out.println(DPAlgorithms31.countVowelPermutationBottomUp(5));*/
+
+        /*var list1 = List.of(List.of(1,100,3), List.of(7,8,9));
+        var list2 = List.of(
+                List.of(100),
+                List.of(100),
+                List.of(100),
+                List.of(100),
+                List.of(100),
+                List.of(100),
+                List.of(1, 1, 1, 1, 1, 1, 700)
+        );
+        System.out.println(DPAlgorithms31.maxValueOfCoinsTopDown(list1, 2));
+        System.out.println(DPAlgorithms31.maxValueOfCoinsTopDown(list2, 7));
+        System.out.println(DPAlgorithms31.maxValueOfCoinsBottomUp(list1, 2));
+        System.out.println(DPAlgorithms31.maxValueOfCoinsBottomUp(list2, 7));*/
+
+        /*System.out.println(DPAlgorithms33.twoEggDropTopDown(2));
+        System.out.println(DPAlgorithms33.twoEggDropTopDown(100));
+        System.out.println(DPAlgorithms33.twoEggDropBottomUp(2));
+        System.out.println(DPAlgorithms33.twoEggDropBottomUp(100));*/
+
+        /*System.out.println(DPAlgorithms33.superEggDropTopDown(1, 2));
+        System.out.println(DPAlgorithms33.superEggDropTopDown(2, 6));
+        System.out.println(DPAlgorithms33.superEggDropTopDown(3, 14));*/
+
+        /*System.out.println(DPAlgorithms34.makeArrayIncreasingTopDown(new int[]{1,5,3,6,7}, new int[]{1,3,2,4}));
+        System.out.println(DPAlgorithms34.makeArrayIncreasingTopDown(new int[]{1,5,3,6,7}, new int[]{4,3,1}));*/
+
+        /*System.out.println(DPAlgorithms34.knightDialerTopDown(1));
+        System.out.println(DPAlgorithms34.knightDialerTopDown(2));*/
+
+        /*System.out.println(DPAlgorithms35.numWaysTopDown(3, 2));
+        System.out.println(DPAlgorithms35.numWaysTopDown(2, 4));
+        System.out.println(DPAlgorithms35.numWaysTopDown(4, 2));*/
+
+        /*int[][] array = {
+                {6, 1},
+                {3, 2},
+                {2, 3}
+        };
+        int[][] array2 = {
+                {50, 1},
+                {50, 2},
+                {50, 5}
+        };
+        int[][] array3 = {
+                {6, 1},
+                {3, 2},
+                {2, 3}
+        };
+        System.out.println(DPAlgorithms35.waysToReachTargetTopDown(6, array));
+        System.out.println(DPAlgorithms35.waysToReachTargetTopDown(5, array2));
+        System.out.println(DPAlgorithms35.waysToReachTargetTopDown(18, array3));*/
+
+        /*System.out.println(DPAlgorithms35.checkRecordTopDown(2));
+        System.out.println(DPAlgorithms35.checkRecordTopDown(1));
+        System.out.println(DPAlgorithms35.checkRecordTopDown(10101));*/
+
+        /*System.out.println(DPAlgorithms36.findPathsTopDown(2, 2, 2, 0, 0));
+        System.out.println(DPAlgorithms36.findPathsTopDown(1, 3, 3, 0, 1));
+        System.out.println(DPAlgorithms36.findPathsBottomUp(2, 2, 2, 0, 0));
+        System.out.println(DPAlgorithms36.findPathsBottomUp(1, 3, 3, 0, 1));*/
+
+        /*System.out.println(DPAlgorithms36.countVowelStringsTopDown(1));
+        System.out.println(DPAlgorithms36.countVowelStringsTopDown(2));
+        System.out.println(DPAlgorithms36.countVowelStringsTopDown(33));
+        System.out.println(DPAlgorithms36.countVowelStringsBottomUp(1));
+        System.out.println(DPAlgorithms36.countVowelStringsBottomUp(2));
+        System.out.println(DPAlgorithms36.countVowelStringsBottomUp(33));*/
+
+        /*var list1 = List.of(
+                List.of(3, 4),
+                List.of(4, 5),
+                List.of(5)
+        );
+        var list2 = List.of(
+                List.of(3, 5, 1),
+                List.of(3, 5)
+        );
+        var list3 = List.of(
+                List.of(1, 2, 3, 4),
+                List.of(1, 2, 3, 4),
+                List.of(1, 2, 3, 4),
+                List.of(1, 2, 3, 4)
+        );
+        System.out.println(DPwBitmask.numberWaysTopDown(list1));
+        System.out.println(DPwBitmask.numberWaysTopDown(list2));
+        System.out.println(DPwBitmask.numberWaysTopDown(list3));
+        System.out.println(DPwBitmask.numberWaysTopDownSlower(list1));
+        System.out.println(DPwBitmask.numberWaysTopDownSlower(list2));
+        System.out.println(DPwBitmask.numberWaysTopDownSlower(list3));*/
+
+        /*System.out.println(DPAlgorithms38.minSwapTopDown(new int[]{1,3,5,4}, new int[]{1,2,3,7}));
+        System.out.println(DPAlgorithms38.minSwapTopDown(new int[]{0,3,5,8,9}, new int[]{2,1,4,6,9}));
+        System.out.println(DPAlgorithms38.minSwapBottomUp(new int[]{1,3,5,4}, new int[]{1,2,3,7}));
+        System.out.println(DPAlgorithms38.minSwapBottomUp(new int[]{0,3,5,8,9}, new int[]{2,1,4,6,9}));*/
+
+        /*System.out.println(DPAlgorithms38.isValidPalindromeTopDown("abcdeca", 2));
+        System.out.println(DPAlgorithms38.isValidPalindromeTopDown("abbababa", 1));
+        System.out.println(DPAlgorithms38.isValidPalindromeBottomUp("abcdeca", 2));
+        System.out.println(DPAlgorithms38.isValidPalindromeBottomUp("abbababa", 1));
+        System.out.println(DPAlgorithms38.isValidPalindrome3DArray("abcdeca", 2));
+        System.out.println(DPAlgorithms38.isValidPalindrome3DArray("abbababa", 1));*/
+
+        /*System.out.println(DPAlgorithms39.countSubstringsBottomUp("abc"));
+        System.out.println(DPAlgorithms39.countSubstringsBottomUp("aaa"));*/
+
+        System.out.println(new DPAlgorithms39.LongestPalindrome().longestPalindrome("babad"));
+        System.out.println(new DPAlgorithms39.LongestPalindrome().longestPalindrome("cbbd"));
+
+
+
+
     }
+
+
 }

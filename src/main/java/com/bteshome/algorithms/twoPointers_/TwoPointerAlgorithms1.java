@@ -32,60 +32,65 @@ public class TwoPointerAlgorithms1 {
         return isSebseq;
     }
 
-    /**
-     * https://leetcode.com/problems/valid-palindrome-ii/
+    /*
+     * https://leetcode.com/problems/valid-palindrome/
      * */
-    public static boolean validPalindromeII_Recursive(String s) {
-        if (s == null || s.length() < 3) {
-            return true;
-        }
-
-        return validPalindromeII_Recursive(s, 0, s.length() - 1, 1);
-    }
-
-    private static boolean validPalindromeII_Recursive(String s, int i, int j, int numDeletes) {
-        if (i >= j) {
-            return true;
-        }
-
-        if (s.charAt(i) == s.charAt(j)) {
-            return validPalindromeII_Recursive(s, i+1, j-1, numDeletes);
-        }
-
-        if (numDeletes == 0) {
+    public static boolean isPalindrome(String s) {
+        if (s == null)
             return false;
-        }
-
-        return validPalindromeII_Recursive(s, i+1, j, numDeletes - 1) || validPalindromeII_Recursive(s, i, j-1, numDeletes - 1);
-    }
-
-    public static boolean validPalindromeII_Iterative(String s) {
-        if (s == null || s.length() < 3) {
-            return true;
-        }
 
         int i = 0;
         int j = s.length() - 1;
+        char A = 'A';
+        char Z = 'Z';
 
         while (i < j) {
-            if (s.charAt(i) != s.charAt(j)) {
-                return validPalindromeII_Iterative(s, i, j-1) || validPalindromeII_Iterative(s, i+1, j);
+            char a = s.charAt(i);
+            char b = s.charAt(j);
+            if (!Character.isLetterOrDigit(a))
+                i++;
+            else if (!Character.isLetterOrDigit(b))
+                j--;
+            else {
+                if (a >= A && a <= Z)
+                    a = Character.toLowerCase(a);
+                if (b >= A && b <= Z)
+                    b = Character.toLowerCase(b);
+                if (a != b)
+                    return false;
+                i++;
+                j--;
             }
-            i++;
-            j--;
         }
 
         return true;
     }
 
-    private static boolean validPalindromeII_Iterative(String s, int i, int j) {
-        while (i < j) {
-            if (s.charAt(i) != s.charAt(j)) {
+    /**
+     * https://leetcode.com/problems/valid-palindrome-ii/
+     */
+    public static class ValidPalindromeII {
+        private int deletions = 0;
+
+        public boolean validPalindrome(String s) {
+            if (s == null)
                 return false;
-            }
-            i++;
-            j--;
+            return validPalindrome(s, 0, s.length() - 1);
         }
-        return true;
+
+        private boolean validPalindrome(String s, int left, int right) {
+            while (left < right) {
+                if (s.charAt(left) != s.charAt(right)) {
+                    if (deletions != 0)
+                        return false;
+                    deletions++;
+                    return validPalindrome(s, left + 1, right) || validPalindrome(s, left, right - 1);
+                }
+                left++;
+                right--;
+            }
+
+            return true;
+        }
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 public class BacktrackingAlgorithms4 {
     /**
      * https://leetcode.com/problems/subsets/description/?envType=problem-list-v2&envId=backtracking
+     * NOTE: checkout the bitmask solution as well, which is a bit faster (for nums.length <= 10)
      * */
     public static List<List<Integer>> subsets(int[] nums) {
         var subsets = new ArrayList<List<Integer>>();

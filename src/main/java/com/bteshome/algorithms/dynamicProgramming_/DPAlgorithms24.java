@@ -41,31 +41,6 @@ public class DPAlgorithms24 {
         return dp[pos1][pos2][length];
     }
 
-    /* https://leetcode.com/problems/toss-strange-coins/ */
-    public static double probabilityOfHeads(double[] prob, int target) {
-        if (prob == null || prob.length == 0)
-            return target == 0 ? 1 : 0;
-        if (target < 0 || target > prob.length)
-            return 0;
-
-        return probabilityOfHeads(prob, 0, target, new Double[prob.length][target + 1]);
-    }
-
-    private static double probabilityOfHeads(double[] prob, int coin, int target, Double[][] dp) {
-        if (coin == prob.length)
-            return target == 0 ? 1 : 0;
-
-        if (dp[coin][target] == null) {
-            double p = 0;
-            p += (1 - prob[coin]) * probabilityOfHeads(prob, coin + 1, target, dp);
-            if (target > 0)
-                p += prob[coin] * probabilityOfHeads(prob, coin + 1, target - 1, dp);
-            dp[coin][target] = p;
-        }
-
-        return dp[coin][target];
-    }
-
     /* https://leetcode.com/problems/best-team-with-no-conflicts */
     public static int bestTeamScore(int[] scores, int[] ages) {
         if (scores == null || ages == null || scores.length != ages.length || scores.length < 1)
