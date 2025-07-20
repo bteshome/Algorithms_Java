@@ -1,8 +1,5 @@
 package com.bteshome.algorithms.dynamicProgramming_;
 
-import com.bteshome.algorithms.twoPointers_.TwoPointerAlgorithms1;
-import com.bteshome.algorithms.twoPointers_.TwoPointerAlgorithms5;
-
 public class DPTest {
     public static void test() {
         //System.out.println(DPAlgorithms1.climbStairsIterative(3));
@@ -15,10 +12,6 @@ public class DPTest {
 
         //System.out.println(DPAlgorithms2.numberCount_bruteForce(1, 20));
 
-        /*System.out.println(DPAlgorithms3.longestPalindrome("cbbd"));
-        System.out.println(DPAlgorithms3.longestPalindrome_bruteForce1("cbbd"));
-        System.out.println(DPAlgorithms3.longestPalindrome_bruteForce2("cbbd"));*/
-
         //System.out.println(DPAlgorithms4.robRecursive(new int[]{2,7,9,3,1}));
 
         //System.out.println(DPAlgorithms4.robIIRecursive(new int[]{1,2,3,1}));
@@ -26,6 +19,9 @@ public class DPTest {
         //System.out.println(DPAlgorithms5.wordBreak("applepenapple", List.of("apple","pen")));
 
         //System.out.println(DPAlgorithms5.lengthOfLIS(new int[]{10,9,2,5,3,7,101,18}));
+
+        //System.out.println(DPAlgorithms5.findNumberOfLIS(new int[]{0,1,0,3,2,3}));
+        //System.out.println(DPAlgorithms5.findNumberOfLIS(new int[]{1,3,5,4,7}));
 
         //System.out.println(DPAlgorithms5.longestCommonSubsequenceBottomUp("abcde", "ace"));
         //System.out.println(DPAlgorithms5.longestCommonSubsequenceTopDown("abcde", "ace"));
@@ -51,7 +47,7 @@ public class DPTest {
         System.out.println(DPAlgorithms7.isInterleaveTopDown("aabcc", "dbbca", "aadbbbaccc"));
         System.out.println(DPAlgorithms7.isInterleaveTopDown("", "", ""));*/
 
-        //System.out.println(DPAlgorithms7.minDistance("horse", "ros"));
+        //System.out.println(DPAlgorithms7.minDistanceTopDown("horse", "ros"));
 
         /*System.out.println(DPAlgorithms7.numDistinctTopDown("rabbbit", "rabbit"));
         System.out.println(DPAlgorithms7.numDistinctTopDown("babgbag", "bag"));
@@ -75,7 +71,9 @@ public class DPTest {
         /*var costs = new int[][]{
                 new int[]{17,2,17}, new int[]{16,16,5}, new int[]{14,3,19}
         };
-        System.out.println(DPAlgorithms11.paintHouse(costs));*/
+        System.out.println(DPAlgorithms11.paintHouseTopDown(costs));
+        System.out.println(DPAlgorithms11.paintHouseBottomUp(costs));
+        */
 
         /*var costs = new int[][]{
                 new int[]{1,5,3}, new int[]{2,9,4}
@@ -179,9 +177,21 @@ public class DPTest {
 
         //System.out.println(DPAlgorithms20.maxProfitII(new int[]{1,2,4,2,5,7,2,4,9,0}));
 
-        //System.out.println(DPAlgorithms20.maxProfitIIITODO(new int[]{3,3,5,0,0,3,1,4}));
+        //System.out.println(DPAlgorithms20.maxProfitWithCooldownTopDown(new int[]{1,2,3,0,2}));
+        //System.out.println(DPAlgorithms20.maxProfitWithCooldownBottomUp(new int[]{1,2,3,0,2}));
+        //System.out.println(DPAlgorithms20.maxProfitWithCooldownBottomUpSpaceOptimized(new int[]{1,2,3,0,2}));
 
-        //System.out.println(DPAlgorithms20.maxProfitIVTODO(1, new int[]{1, 2, 3, 4}));
+        //System.out.println(DPAlgorithms20.maxProfitWithTransactionFeeTopDown(new int[]{1,3,2,8,4,9}, 2));
+        //System.out.println(DPAlgorithms20.maxProfitWithTransactionFeeBottomUp(new int[]{1,3,2,8,4,9}, 2));
+        //System.out.println(DPAlgorithms20.maxProfitWithTransactionFeeBottomUpSpaceOptimized(new int[]{1,3,2,8,4,9}, 2));
+
+        //System.out.println(DPAlgorithms20.maxProfitIIITopDown(new int[]{3,3,5,0,0,3,1,4}));
+        //System.out.println(DPAlgorithms20.maxProfitIIIBottomUp(new int[]{3,3,5,0,0,3,1,4}));
+        //System.out.println(DPAlgorithms20.maxProfitIIIBottomUpSpaceOptimized(new int[]{3,3,5,0,0,3,1,4}));
+
+        //System.out.println(DPAlgorithms20.maxProfitIVTopDown(1, new int[]{1, 2, 3, 4}));
+        //System.out.println(DPAlgorithms20.maxProfitIVBottomUp(1, new int[]{1, 2, 3, 4}));
+        //System.out.println(DPAlgorithms20.maxProfitIVBottomUpSpaceOptimized(1, new int[]{1, 2, 3, 4}));
 
         //System.out.println(DPAlgorithms19.strangePrinter("aaabbb"));
         //System.out.println(DPAlgorithms19.strangePrinterOptimizedV1("aaabbb"));
@@ -260,6 +270,9 @@ public class DPTest {
 
         /*System.out.println(DPAlgorithms32.knightProbability(3, 2, 0, 0));
         System.out.println(DPAlgorithms32.knightProbability(1, 0, 0, 0));*/
+
+        /*System.out.println(DPAlgorithms32.soupServings(50));
+        System.out.println(DPAlgorithms32.soupServings(100));*/
 
         /*int[][] array = {
                 {1, 2, 4},
@@ -401,13 +414,56 @@ public class DPTest {
         /*System.out.println(DPAlgorithms39.countSubstringsBottomUp("abc"));
         System.out.println(DPAlgorithms39.countSubstringsBottomUp("aaa"));*/
 
-        System.out.println(new DPAlgorithms39.LongestPalindrome().longestPalindrome("babad"));
-        System.out.println(new DPAlgorithms39.LongestPalindrome().longestPalindrome("cbbd"));
+        /*System.out.println(DPAlgorithms39.longestPalindromeBottomUp("babad"));
+        System.out.println(DPAlgorithms39.longestPalindromeBottomUp("cbbd"));*/
 
+        /*System.out.println(DPAlgorithms40.partition("aab"));
+        System.out.println(DPAlgorithms40.partition("a"));
+        System.out.println(DPAlgorithms40.partition("ab"));*/
 
+        /*System.out.println(DPAlgorithms40.minCutTopDown("aab"));
+        System.out.println(DPAlgorithms40.minCutTopDown("a"));
+        System.out.println(DPAlgorithms40.minCutTopDown("ab"));*/
+
+        //System.out.println(DPAlgorithms41.minDistanceTopDown(new int[]{1,4,8,10,20}, 3));
+
+        /*System.out.println(DPAlgorithms42.maxEnvelopes(new int[][]{
+                new int[]{5,4},
+                new int[]{6,4},
+                new int[]{6,7},
+                new int[]{2,3}
+        }));
+        System.out.println(DPAlgorithms42.maxEnvelopes(new int[][]{
+                new int[]{1,1},
+                new int[]{1,1},
+                new int[]{1,1}
+        }));
+        System.out.println(DPAlgorithms42.maxEnvelopes(new int[][]{
+                new int[]{1,3},
+                new int[]{1,4},
+                new int[]{1,5}
+        }));*/
+
+        /*System.out.println(Arrays.toString(DPAlgorithms42.longestObstacleCourseAtEachPosition(new int[]{1,2,3,2})));
+        System.out.println(Arrays.toString(DPAlgorithms42.longestObstacleCourseAtEachPosition(new int[]{2,2,1})));
+        System.out.println(Arrays.toString(DPAlgorithms42.longestObstacleCourseAtEachPosition(new int[]{3,1,5,6,4,2})));*/
+
+        /*System.out.println(DPAlgorithms43.numSquaresTopDown(12));
+        System.out.println(DPAlgorithms43.numSquaresTopDown(13));*/
+
+        /*System.out.println(DPAlgorithms44.findMaxFormTopDown(new String[]{ "10","0001","111001","1","0" }, 5, 3));
+        System.out.println(DPAlgorithms44.findMaxFormTopDown(new String[]{ "10","0","1" }, 1, 1));*/
+
+        /*System.out.println(DPAlgorithms45.numTilingsTopDown(3));
+        System.out.println(DPAlgorithms45.numTilingsBottomUp(3));*/
+
+        /*System.out.println(DPAlgorithms47.maxSizeSlicesTopDown(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms47.maxSizeSlicesTopDown(new int[]{8,9,8,6,1,1}));
+        System.out.println(DPAlgorithms47.maxSizeSlicesTopDownOneLessDimension(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms47.maxSizeSlicesTopDownOneLessDimension(new int[]{8,9,8,6,1,1}));
+        System.out.println(DPAlgorithms47.maxSizeSlicesBottomUp(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms47.maxSizeSlicesBottomUp(new int[]{8,9,8,6,1,1}));*/
 
 
     }
-
-
 }

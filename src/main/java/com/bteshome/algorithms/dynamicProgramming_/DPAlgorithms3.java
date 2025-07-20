@@ -1,119 +1,78 @@
 package com.bteshome.algorithms.dynamicProgramming_;
 
 public class DPAlgorithms3 {
-    /**
-     * leetcode https://leetcode.com/problems/longest-palindromic-substring/submissions/721472102/?envType=problem-list-v2&envId=two-pointers
-     * */
-    public static String longestPalindrome(String s) {
-        if (s == null) {
-            return null;
+    /* https://leetcode.com/problems/longest-palindromic-subsequence */
+    public static int longestPalindromeSubseqBottomUp(String s) {
+        if (s == null)
+            return 0;
+
+        int n = s.length();
+
+        if (n < 2)
+            return n;
+
+        int[][] dp = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            dp[i][i] = 1;
+
+        for (int i = 0; i < n - 1; i++) {
+            int j = i + 1;
+            dp[i][j] = s.charAt(i) == s.charAt(j) ? 2 : 1;
         }
 
-        String longestPalindrome = "";
-        int longestPalindromeLength = 0;
-        Boolean[][] cache = new Boolean[s.length()][];
-        for (int i = 0; i < s.length(); i++) {
-            cache[i] = new Boolean[s.length()];
+        for (int len = 3; len <= n; len++) {
+            for (int i = 0; i <= n - len ; i++) {
+                int j = i + len - 1;
+                if (s.charAt(i) == s.charAt(j))
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                else
+                    dp[i][j] = Math.max(dp[i + 1][j] , dp[i][j - 1]);
+            }
         }
 
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = s.length() - 1; j >= i; j--) {
-                if (longestPalindrome(s, i, j, cache)) {
-                    var palindromeLength = j - i + 1;
-                    if (palindromeLength > longestPalindromeLength) {
-                        longestPalindromeLength = palindromeLength;
-                        longestPalindrome = s.substring(i, j + 1);
-                    }
+        return dp[0][n - 1];
+    }
+
+    /* https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings */
+    public static int minimumDeleteSumTopDown(String s1, String s2) {
+        if (s1 == null)
+            s1 = "";
+        if (s2 == null)
+            s2 = "";
+
+        Integer[][] dp = new Integer[s1.length() + 1][s2.length() + 1];
+
+        return minimumDeleteSumTopDown(s1, s2, 0, 0, dp);
+    }
+
+    private static int minimumDeleteSumTopDown(String s1, String s2, int pos1, int pos2, Integer[][] dp) {
+        if (dp[pos1][pos2] == null) {
+            int minSum = Integer.MAX_VALUE;
+
+            if (pos1 == s1.length()) {
+                int sum = 0;
+                for (int j = pos2; j < s2.length(); j++)
+                    sum += s2.charAt(j);
+                minSum = sum;
+            } else if (pos2 == s2.length()) {
+                int sum = 0;
+                for (int i = pos1; i < s1.length(); i++)
+                    sum += s1.charAt(i);
+                minSum = sum;
+            } else {
+                if (s1.charAt(pos1) ==  s2.charAt(pos2))
+                    minSum = minimumDeleteSumTopDown(s1, s2, pos1 + 1, pos2 + 1, dp);
+                else {
+                    int minSum1 = s1.charAt(pos1) + minimumDeleteSumTopDown(s1, s2, pos1 + 1, pos2, dp);
+                    int minSum2 = s2.charAt(pos2) + minimumDeleteSumTopDown(s1, s2, pos1, pos2 + 1, dp);
+                    minSum = Math.min(minSum1, minSum2);
                 }
             }
+
+            dp[pos1][pos2] = minSum;
         }
 
-        return longestPalindrome;
-    }
-
-    private static boolean longestPalindrome(String s, int left, int right, Boolean[][] cache) {
-        if (left >= right) {
-            return true;
-        }
-
-        if (cache[left][right] == null) {
-            cache[left][right] = (s.charAt(left) == s.charAt(right))
-                && longestPalindrome(s, left + 1, right - 1, cache);
-        }
-
-        return cache[left][right];
-    }
-
-    public static String longestPalindrome_bruteForce1(String s) {
-        if (s == null) {
-            return null;
-        }
-
-        var maxLengthPalindrome = "";
-
-        // even length palindromes
-        for (int center = 0; center < s.length(); center++) {
-            var palindrome = longestPalindrome_bruteForce1(s, center, "", center, center + 1);
-            if (palindrome.length() > maxLengthPalindrome.length()) {
-                maxLengthPalindrome = palindrome;
-            }
-        }
-
-        // odd length palindromes
-        for (int center = 0; center < s.length(); center++) {
-            var palindrome = longestPalindrome_bruteForce1(s, center, s.substring(center, center + 1), center - 1, center + 1);
-            if (palindrome.length() > maxLengthPalindrome.length()) {
-                maxLengthPalindrome = palindrome;
-            }
-        }
-
-        return maxLengthPalindrome;
-    }
-
-    private static String longestPalindrome_bruteForce1(String s, int center, String palindrome, int left, int right) {
-        if (left < 0 || right >= s.length()) {
-            return palindrome;
-        }
-
-        if (s.charAt(left) != s.charAt(right)) {
-            return palindrome;
-        }
-
-        return longestPalindrome_bruteForce1(s, center, s.charAt(left) + palindrome + s.charAt(right), left - 1, right + 1);
-    }
-
-    public static String longestPalindrome_bruteForce2(String s) {
-        if (s == null) {
-            return null;
-        }
-
-        String longestPalindrome = "";
-        int longestPalindromeLength = 0;
-
-        for (int i = 0; i < s.length(); i++) {
-            for (int j = s.length() - 1; j >= i; j--) {
-                if (longestPalindrome_bruteForce2(s, i, j)) {
-                    var palindromeLength = j - i + 1;
-                    if (palindromeLength > longestPalindromeLength) {
-                        longestPalindromeLength = palindromeLength;
-                        longestPalindrome = s.substring(i, j + 1);
-                    }
-                }
-            }
-        }
-
-        return longestPalindrome;
-    }
-
-    private static boolean longestPalindrome_bruteForce2(String s, int left, int right) {
-        if (left >= right) {
-            return true;
-        }
-
-        if (s.charAt(left) != s.charAt(right)) {
-            return false;
-        }
-
-        return longestPalindrome_bruteForce2(s, left + 1, right - 1);
+        return dp[pos1][pos2];
     }
 }

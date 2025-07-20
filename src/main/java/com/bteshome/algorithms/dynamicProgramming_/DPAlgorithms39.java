@@ -48,69 +48,37 @@ public class DPAlgorithms39 {
      * NOTE: this solution is correct, but is slower than the two-pointer solution,
      *       which employs the expand around center approach
      * */
-    public static class LongestPalindrome {
-        private int maxLength = 0;
-        private int maxLenStart = 0;
-        private int maxLenEnd = -1;
-        boolean[][] dp = null;
-        int n = 0;
-        String s = null;
+    public static String longestPalindromeBottomUp(String s) {
+        if (s == null || s.length() < 2)
+            return s;
 
-        public String longestPalindrome(String s) {
-            if (s == null || s.length() < 2)
-                return s;
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        int longestStart = 0;
+        int longestEnd = 0;
 
-            this.s = s;
-            n = s.length();
-            dp = new boolean[n][n];
+        for (int i = 0; i < n; i++)
+            dp[i][i] = true;
 
-            // length 1
-            for (int i = 0; i < n; i++)
-                dp[i][i] = true;
-            maxLength = 1;
-            maxLenStart = 0;
-            maxLenEnd = 0;
+        for (int i = 0; i < n - 1; i++) {
+            int j = i + 1;
+            if (s.charAt(i) == s.charAt(j)) {
+                dp[i][j] = true;
+                longestStart = i;
+                longestEnd = j;
+            }
+        }
 
-            // length 2
-            for (int i = 0; i < n - 1; i++) {
-                int j = i + 1;
-                if (s.charAt(i) == s.charAt(j)) {
+        for (int len = 3; len <= n; len++)
+            for (int i = 0; i <= n - len; i++) {
+                int j = i + len - 1;
+                if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]) {
                     dp[i][j] = true;
-                    maxLength = 2;
-                    maxLenStart = i;
-                    maxLenEnd = j;
+                    longestStart = i;
+                    longestEnd = j;
                 }
             }
 
-            // length > 2
-            for (int len = 3; len <= n; len++) {
-                for (int i = 0; i <= n - len; i++) {
-                    int j = i + len - 1;
-                    if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]) {
-                        dp[i][j] = true;
-                        if (len > maxLength) {
-                            maxLength = len;
-                            maxLenStart = i;
-                            maxLenEnd = j;
-                        }
-                    }
-                }
-            }
-
-            return s.substring(maxLenStart, maxLenEnd + 1);
-        }
-
-        private void longestPalindrome(String s, int i, int j) {
-            while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
-                int length = j - i + 1;
-                if (length > maxLength) {
-                    maxLength = length;
-                    maxLenStart = i;
-                    maxLenEnd = j;
-                }
-                i--;
-                j++;
-            }
-        }
+        return s.substring(longestStart, longestEnd + 1);
     }
 }

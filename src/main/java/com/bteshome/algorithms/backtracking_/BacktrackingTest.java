@@ -1,6 +1,7 @@
 package com.bteshome.algorithms.backtracking_;
 
 import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms24;
+import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms41;
 import com.bteshome.algorithms.dynamicProgramming_.DPwBitmask2;
 
 import java.util.*;
@@ -101,8 +102,13 @@ public class BacktrackingTest {
         System.out.println(BacktrackingAlgorithms10.maximumRequests(4, arr2));
         System.out.println(BacktrackingAlgorithms10.maximumRequests(16, arr3));*/
 
-        System.out.println(BacktrackingAlgorithms11.canPartitionKSubsets(new int[]{4,3,2,3,5,2,1}, 4));
-        System.out.println(BacktrackingAlgorithms11.canPartitionKSubsets(new int[]{1,2,3,4}, 3));
+        /*System.out.println(BacktrackingAlgorithms11.canPartitionKSubsets(new int[]{4,3,2,3,5,2,1}, 4));
+        System.out.println(BacktrackingAlgorithms11.canPartitionKSubsets(new int[]{1,2,3,4}, 3));*/
+
+        System.out.println(new BacktrackingAlgorithms12.MaxScoreWords().maxScoreWords(
+                new String[]{"dog","cat","dad","good"},
+                new char[]{'a','a','c','d','d','d','g','o','o'},
+                new int[]{1,0,9,5,0,0,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0}));
     }
 }
 

@@ -68,4 +68,26 @@ public class HashTableAlgorithms4 {
 
         return pairs.toArray(new int[0][]);
     }
+
+    /**
+     * https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference
+     * NOTE: this solution is runs in linear time.
+     *       For comparison, see the DP solution that runs in quadratic time.
+     * */
+    public static int longestSubsequenceLinear(int[] arr, int difference) {
+        if (arr == null || arr.length == 0)
+            return 0;
+
+        Map<Integer, Integer> sequenceEndingIn = new HashMap<>();
+        int maxLength = 0;
+
+        for (int num : arr) {
+            int prevNum = num - difference;
+            int length = 1 + sequenceEndingIn.getOrDefault(prevNum, 0);
+            sequenceEndingIn.put(num, length);
+            maxLength = Math.max(maxLength, length);
+        }
+
+        return maxLength;
+    }
 }

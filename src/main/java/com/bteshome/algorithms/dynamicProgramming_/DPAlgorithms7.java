@@ -1,6 +1,8 @@
 package com.bteshome.algorithms.dynamicProgramming_;
 
 public class DPAlgorithms7 {
+    private static final int MOD = ((int) Math.pow(10, 9)) + 7;
+
     /**
      * https://leetcode.com/problems/interleaving-string
      * */
@@ -39,7 +41,7 @@ public class DPAlgorithms7 {
     /**
      * https://leetcode.com/problems/edit-distance/?envType=study-plan-v2&envId=top-interview-150
      * */
-    public static int minDistance(String word1, String word2) {
+    public static int minDistanceTopDown(String word1, String word2) {
         if (word1 == null || word2 == null) {
             return -1;
         }
@@ -49,10 +51,10 @@ public class DPAlgorithms7 {
             cache[i] = new Integer[word2.length()];
         }
 
-        return minDistance(word1, word2, 0, 0, cache);
+        return minDistanceTopDown(word1, word2, 0, 0, cache);
     }
 
-    private static int minDistance(String word1, String word2, int pos1, int pos2, Integer[][] cache) {
+    private static int minDistanceTopDown(String word1, String word2, int pos1, int pos2, Integer[][] cache) {
         if (pos1 == word1.length()) {
             return word2.length() - pos2;
         }
@@ -65,11 +67,11 @@ public class DPAlgorithms7 {
             int distance = Integer.MAX_VALUE;
 
             if (word1.charAt(pos1) == word2.charAt(pos2)) {
-                distance = minDistance(word1, word2, pos1 + 1, pos2 + 1, cache);
+                distance = minDistanceTopDown(word1, word2, pos1 + 1, pos2 + 1, cache);
             } else {
-                distance = Math.min(distance, 1 + minDistance(word1, word2, pos1 + 1, pos2 + 1, cache));
-                distance = Math.min(distance, 1 + minDistance(word1, word2, pos1 + 1, pos2, cache));
-                distance = Math.min(distance, 1 + minDistance(word1, word2, pos1, pos2 + 1, cache));
+                distance = Math.min(distance, 1 + minDistanceTopDown(word1, word2, pos1 + 1, pos2 + 1, cache));
+                distance = Math.min(distance, 1 + minDistanceTopDown(word1, word2, pos1 + 1, pos2, cache));
+                distance = Math.min(distance, 1 + minDistanceTopDown(word1, word2, pos1, pos2 + 1, cache));
             }
 
             cache[pos1][pos2] = distance;

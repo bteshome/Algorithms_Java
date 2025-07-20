@@ -63,7 +63,7 @@ public class DPAlgorithms11 {
     /**
      * https://leetcode.com/problems/paint-house/?envType=problem-list-v2&envId=dynamic-programming&difficulty=MEDIUM
      * */
-    public static int paintHouse(int[][] costs) {
+    public static int paintHouseTopDown(int[][] costs) {
         if (costs == null || costs.length == 0)
             return 0;
 
@@ -71,14 +71,14 @@ public class DPAlgorithms11 {
         for (int i = 0; i < costs.length; i++)
             cache[i] = new Integer[3];
 
-        int redCost = minCost(costs, costs.length - 1, 0, cache);
-        int blueCost = minCost(costs, costs.length - 1, 1, cache);
-        int greenCost = minCost(costs, costs.length - 1, 2, cache);
+        int redCost = paintHouseTopDown(costs, costs.length - 1, 0, cache);
+        int blueCost = paintHouseTopDown(costs, costs.length - 1, 1, cache);
+        int greenCost = paintHouseTopDown(costs, costs.length - 1, 2, cache);
 
         return Math.min(Math.min(redCost, blueCost), greenCost);
     }
 
-    private static int minCost(int[][] costs, int pos, int color, Integer[][] cache) {
+    private static int paintHouseTopDown(int[][] costs, int pos, int color, Integer[][] cache) {
         if (pos == 0)
             return costs[pos][color];
 
@@ -87,12 +87,31 @@ public class DPAlgorithms11 {
 
             for (int i = 0; i < 3; i++)
                 if (i != color)
-                    cost = Math.min(cost, minCost(costs, pos - 1, i, cache));
+                    cost = Math.min(cost, paintHouseTopDown(costs, pos - 1, i, cache));
 
             cache[pos][color] = cost + costs[pos][color];
         }
 
         return cache[pos][color];
+    }
+
+    public static int paintHouseBottomUp(int[][] costs) {
+        if (costs == null || costs.length == 0)
+            return 0;
+
+        int n = costs.length;
+        int[][] dp = new int[n][3];
+        dp[0][0] = costs[0][0];
+        dp[0][1] = costs[0][1];
+        dp[0][2] = costs[0][2];
+
+        for (int i = 1; i < n; i++) {
+            dp[i][0] = costs[i][0] + Math.min(dp[i - 1][1], dp[i - 1][2]);
+            dp[i][1] = costs[i][1] + Math.min(dp[i - 1][0], dp[i - 1][2]);
+            dp[i][2] = costs[i][2] + Math.min(dp[i - 1][0], dp[i - 1][1]);
+        }
+
+        return Math.min(Math.min(dp[n - 1][0], dp[n - 1][1]), dp[n - 1][2]);
     }
 
     /**

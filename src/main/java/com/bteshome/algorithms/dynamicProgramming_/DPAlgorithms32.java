@@ -1,5 +1,10 @@
 package com.bteshome.algorithms.dynamicProgramming_;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class DPAlgorithms32 {
     /* https://leetcode.com/problems/toss-strange-coins/ */
     public static double probabilityOfHeads(double[] prob, int target) {
@@ -60,4 +65,42 @@ public class DPAlgorithms32 {
 
         return dp[row][column][k];
     }
+
+    /**
+     * https://leetcode.com/problems/soup-servings
+     * NOTE: it can still be optimized by reducing the state space
+     * */
+    public static double soupServings(int n) {
+        // optimization: it has been mathematically proven that
+        //               the probability converges to 1 for n > 4800
+        if (n > 4800)
+            return 1.0;
+
+        return soupServings(n, n, new HashMap<>());
+    }
+
+    private static double soupServings(int a, int b, Map<String, Double> dp) {
+        if (a <= 0 && b <= 0)
+            return 0.5;
+        if (a <= 0)
+            return 1;
+        if (b <= 0)
+            return 0;
+
+        String key = "%s,%s".formatted(a, b);
+
+        if (dp.containsKey(key))
+            return dp.get(key);
+
+        double p1 = soupServings(a - 100, b, dp);
+        double p2 = soupServings(a - 75, b - 25, dp);
+        double p3 = soupServings(a - 50, b - 50, dp);
+        double p4 = soupServings(a - 25, b - 75, dp);
+
+        dp.put(key, 0.25 * (p1 + p2 + p3 + p4));
+
+        return dp.get(key);
+    }
+
+
 }

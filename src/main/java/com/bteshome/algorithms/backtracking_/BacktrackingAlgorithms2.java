@@ -114,17 +114,16 @@ public class BacktrackingAlgorithms2 {
             return;
         }
 
-        if (target < 0) {
-            return;
-        }
-
         if (pos == candidates.length) {
             return;
         }
 
-        combination.addLast(candidates[pos]);
-        combinationSum(candidates, target - candidates[pos], combinations, pos, combination);
-        combination.removeLast();
+        if (target >= candidates[pos]) {
+            combination.addLast(candidates[pos]);
+            combinationSum(candidates, target - candidates[pos], combinations, pos, combination);
+            combination.removeLast();
+        }
+
         combinationSum(candidates, target, combinations, pos + 1, combination);
     }
 }
