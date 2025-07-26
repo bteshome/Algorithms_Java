@@ -1,8 +1,6 @@
 package com.bteshome.algorithms.backtracking_;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class BacktrackingAlgorithms2 {
     /**
@@ -25,43 +23,82 @@ public class BacktrackingAlgorithms2 {
         }
 
         for (int i = pos; i < nums.length; i++) {
-            permute1Swap(nums, pos, i);
+            swap(nums, pos, i);
             permute1(nums, permutations, pos + 1);
-            permute1Swap(nums, pos, i);
+            swap(nums, pos, i);
         }
     }
 
-    private static void permute1Swap(int[] nums, int i, int j) {
+    private static void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
     }
 
+    /* https://leetcode.com/problems/permutations-ii */
     public static List<List<Integer>> permute2(int[] nums) {
-        var permutations = new ArrayList<List<Integer>>();
+        if (nums == null || nums.length == 0)
+            return List.of(List.of());
 
-        if ((nums != null) && (nums.length > 0)) {
-            permute2(nums, permutations, 0, new boolean[nums.length], new ArrayList<Integer>(nums.length));
-        }
+        List<List<Integer>> permutations = new ArrayList<>();
+
+        permute2(nums, 0, permutations);
 
         return permutations;
     }
 
-    private static void permute2(int[] nums, ArrayList<List<Integer>> permutations, int pos, boolean[] selected, ArrayList<Integer> permutation) {
+    private static void permute2(int[] nums, int pos, List<List<Integer>> permutations) {
         if (pos == nums.length) {
-            permutations.add(permutation.stream().toList());
+            permutations.add(Arrays.stream(nums).boxed().toList());
             return;
         }
 
-        for (int i = 0; i < nums.length; i++) {
-            if (!selected[i]) {
-                permutation.add(nums[i]);
-                selected[i] = true;
-                permute2(nums, permutations, pos + 1, selected, permutation);
-                permutation.removeLast();
-                selected[i] = false;
-            }
+        Set<Integer> selected = new HashSet<>();
+
+        for (int i = pos; i < nums.length; i++) {
+            if (selected.contains(nums[i]))
+                continue;
+
+            selected.add(nums[i]);
+            swap(nums, pos, i);
+            permute2(nums, pos + 1, permutations);
+            swap(nums, pos, i);
         }
+    }
+
+    /* https://leetcode.com/problems/number-of-squareful-arrays */
+    public static int numSquarefulPerms(int[] nums) {
+        if (nums == null || nums.length < 2)
+            return 0;
+
+        return numSquarefulPerms(nums, 0);
+    }
+
+    private static int numSquarefulPerms(int[] nums, int pos) {
+        if (pos == nums.length)
+            return 1;
+
+        int numPermutations = 0;
+        Set<Integer> selectedValues = new HashSet<>();
+
+        for (int i = pos; i < nums.length; i++) {
+            if (selectedValues.contains(nums[i]))
+                continue;
+
+            if (pos > 0) {
+                int sum = nums[i] + nums[pos - 1];
+                int sqrt = (int) Math.sqrt(sum);
+                if (sqrt * sqrt != sum)
+                    continue;
+            }
+
+            selectedValues.add(nums[i]);
+            swap(nums, pos, i);
+            numPermutations += numSquarefulPerms(nums, pos + 1);
+            swap(nums, pos, i);
+        }
+
+        return numPermutations;
     }
 
     /**

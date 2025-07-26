@@ -2,6 +2,7 @@ package com.bteshome.algorithms.backtracking_;
 
 import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms24;
 import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms41;
+import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms51;
 import com.bteshome.algorithms.dynamicProgramming_.DPwBitmask2;
 
 import java.util.*;
@@ -13,6 +14,10 @@ public class BacktrackingTest {
 
         //System.out.println(BacktrackingAlgorithms2.permute1(new int[]{1, 2, 3}));
         //System.out.println(BacktrackingAlgorithms2.permute2(new int[]{1, 2, 3}));
+
+        /*System.out.println(BacktrackingAlgorithms2.numSquarefulPerms(new int[]{1,17,8}));
+        System.out.println(BacktrackingAlgorithms2.numSquarefulPerms(new int[]{2,2,2}));
+        System.out.println(BacktrackingAlgorithms2.numSquarefulPerms(new int[]{1,1,8,1,8}));*/
 
         //System.out.println(BacktrackingAlgorithms2.combine(4, 2));
 

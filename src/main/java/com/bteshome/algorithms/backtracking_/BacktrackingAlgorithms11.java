@@ -36,6 +36,11 @@ public class BacktrackingAlgorithms11 {
         }
     }
 
+    /**
+     * https://leetcode.com/problems/partition-to-k-equal-sum-subsets
+     * NOTE: this backtracking solution is fine, but its DP version with
+     *       a slight modification runs much faster
+     * */
     public static boolean canPartitionKSubsets(int[] nums, int k) {
         if (nums == null)
             return false;
@@ -71,16 +76,14 @@ public class BacktrackingAlgorithms11 {
     }
 
     private static boolean canPartitionKSubsets(int[] nums, int numPos, int[] sums, long targetSum) {
-        if (numPos == -1) {
-            for (int sum : sums)
-                if (sum != targetSum)
-                    return false;
+        // think why we don't need to check if all sums are equal here in the base case.
+        if (numPos == -1)
             return true;
-        }
 
         int num = nums[numPos];
 
         for (int i = 0; i < sums.length; i++) {
+            // pruning
             if (sums[i] + num > targetSum)
                 continue;
             sums[i] += num;

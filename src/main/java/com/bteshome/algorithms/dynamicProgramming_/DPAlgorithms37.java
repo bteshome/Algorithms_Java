@@ -37,7 +37,7 @@ public class DPAlgorithms37 {
         if (dp[pos][currentSum] == null) {
             boolean can =
                     canPartitionTopDown(nums, pos + 1, currentSum, targetSum, dp) ||
-                            canPartitionTopDown(nums, pos + 1, currentSum + nums[pos], targetSum, dp);
+                    canPartitionTopDown(nums, pos + 1, currentSum + nums[pos], targetSum, dp);
             dp[pos][currentSum] = can;
         }
 
@@ -72,7 +72,7 @@ public class DPAlgorithms37 {
         if (!dp[pos].containsKey(currentSum)) {
             boolean can =
                     canPartitionTopDown2(nums, pos + 1, currentSum, targetSum, dp) ||
-                            canPartitionTopDown2(nums, pos + 1, currentSum + nums[pos], targetSum, dp);
+                    canPartitionTopDown2(nums, pos + 1, currentSum + nums[pos], targetSum, dp);
             dp[pos].put(currentSum, can);
         }
 

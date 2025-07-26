@@ -34,30 +34,51 @@ public class DPAlgorithms11 {
     }
 
     /**
-     * https://leetcode.com/problems/different-ways-to-add-parentheses/?envType=problem-list-v2&envId=dynamic-programming&difficulty=MEDIUM
+     * https://leetcode.com/problems/different-ways-to-add-parentheses
      * */
-    public static List<Integer> diffWaysToComputeTODO(String expression) {
-        var ways = new ArrayList<Integer>();
+    public static List<Integer> diffWaysToCompute(String expression) {
+        if (expression == null || expression.isEmpty())
+            return List.of();
 
-        if (expression != null) {
-            //diffWaysToComputeTODO(expression, 0, ways);
-        }
-
-        return ways;
+        return diffWaysToCompute(expression, new HashMap<>());
     }
 
-    private static void diffWaysToComputeTODO(String expression, int pos, List<Integer> ways) {
-        char operator = ' ';
-        int left = -1;
+    private static List<Integer> diffWaysToCompute(String expression, Map<String, List<Integer>> dp) {
+        if (dp.containsKey(expression))
+            return dp.get(expression);
 
-        for (int i = pos; i < expression.length(); i++) {
-            var c = expression.charAt(i);
-            if (c == '+' || c == '-' || c == '*') {
-                operator = c;
-                left = Integer.parseInt(expression.substring(pos, c));
-                break;
+        List<Integer> results = new ArrayList<>();
+
+        if (expression.length() == 1) {
+            results.add(Integer.parseInt(expression.substring(0, 1)));
+        }
+        else {
+            for (int i = 1; i < expression.length() - 1; i++) {
+                char c = expression.charAt(i);
+                if (c == '+' || c == '-' || c == '*') {
+                    List<Integer> leftResults = diffWaysToCompute(expression.substring(0, i));
+                    List<Integer> rightResults = diffWaysToCompute(expression.substring(i + 1));
+                    for (int left : leftResults) {
+                        for (int right : rightResults) {
+                            results.add(evaluate(left, c, right));
+                        }
+                    }
+                }
             }
         }
+
+        dp.put(expression, results);
+
+        return dp.get(expression);
+    }
+
+    private static int evaluate(int left, char operator, int right) {
+        return switch (operator) {
+            case '+' -> left + right;
+            case '-' -> left - right;
+            case '*' -> left * right;
+            default -> 0;
+        };
     }
 
     /**
@@ -179,6 +200,194 @@ public class DPAlgorithms11 {
             min = Math.min(min, dp[n - 1][j]);
 
         return min;
+    }
+
+    /**
+     * https://leetcode.com/problems/paint-house-iii/
+     * NOTE:
+     *  - the early pruning makes a significant improvement, at least 5x
+     *  - moreover, the array version is around 50x faster than the map version
+     *  - the bottom up version is up to 3x slower than the equivalent top down version
+     * */
+    public static class PaintHouseIIITopDownWithMap {
+        private int[] houses = null;
+        private int[][] cost = null;
+        private int m;
+        private int n;
+        private int target;
+
+        public int minCost(int[] houses, int[][] cost, int m, int n, int target) {
+            if (target < 0)
+                return -1;
+            if (houses == null || houses.length == 0 || cost == null || cost.length == 0)
+                return target == 0 ? 0 : -1;
+            if (m != houses.length || m != cost.length || n != cost[0].length)
+                return -1;
+
+            this.houses = houses;
+            this.cost = cost;
+            this.m = m;
+            this.n = n;
+            this.target = target;
+
+            return minCost(0, 0, 0, new HashMap<>());
+        }
+
+        private int minCost(int neighborhoodsCreated, int prevColor, int pos, Map<String, Integer> dp) {
+            if (pos == houses.length)
+                return neighborhoodsCreated == target ? 0 : -1;
+            // early pruning
+            if (neighborhoodsCreated > target)
+                return -1;
+            // early pruning
+            if (neighborhoodsCreated + m - pos < target)
+                return -1;
+
+            String key = "%s,%s,%s".formatted(pos, neighborhoodsCreated, prevColor);
+
+            if (dp.containsKey(key))
+                return dp.get(key);
+
+            int min = Integer.MAX_VALUE;
+
+            if (houses[pos] != 0) {
+                int color = houses[pos];
+                int currentNeighborhoodsCreated = neighborhoodsCreated + (pos == 0 || prevColor != color ? 1 : 0);
+                int next = minCost(currentNeighborhoodsCreated, color, pos + 1, dp);
+                if (next != -1)
+                    min = next;
+            } else {
+                for (int color = 1; color <= n; color++) {
+                    int currentNeighborhoodsCreated = neighborhoodsCreated + (pos == 0 || prevColor != color ? 1 : 0);
+                    int next = minCost(currentNeighborhoodsCreated, color, pos + 1, dp);
+                    if (next != -1)
+                        min = Math.min(min, cost[pos][color - 1] + next);
+                }
+            }
+
+            dp.put(key, min == Integer.MAX_VALUE ? -1 : min);
+
+            return dp.get(key);
+        }
+    }
+
+    public static class PaintHouseIIITopDownWithArray {
+        private int[] houses = null;
+        private int[][] cost = null;
+        private int m;
+        private int n;
+        private int target;
+        private Integer[][][] dp = null;
+
+        public int minCost(int[] houses, int[][] cost, int m, int n, int target) {
+            if (target < 0)
+                return -1;
+            if (houses == null || houses.length == 0 || cost == null || cost.length == 0)
+                return target == 0 ? 0 : -1;
+            if (m != houses.length || m != cost.length || n != cost[0].length)
+                return -1;
+
+            this.houses = houses;
+            this.cost = cost;
+            this.m = m;
+            this.n = n;
+            this.target = target;
+            this.dp = new Integer[m][target + 1][n + 1];
+
+            return minCost(0, 0, 0);
+        }
+
+        private int minCost(int neighborhoodsCreated, int prevColor, int pos) {
+            if (pos == houses.length)
+                return neighborhoodsCreated == target ? 0 : -1;
+            // early pruning
+            if (neighborhoodsCreated > target)
+                return -1;
+            // early pruning
+            if (neighborhoodsCreated + m - pos < target)
+                return -1;
+
+            if (dp[pos][neighborhoodsCreated][prevColor] != null)
+                return dp[pos][neighborhoodsCreated][prevColor];
+
+            int min = Integer.MAX_VALUE;
+
+            if (houses[pos] != 0) {
+                int color = houses[pos];
+                int currentNeighborhoodsCreated = neighborhoodsCreated + (pos == 0 || prevColor != color ? 1 : 0);
+                int next = minCost(currentNeighborhoodsCreated, color, pos + 1);
+                if (next != -1)
+                    min = next;
+            } else {
+                for (int color = 1; color <= n; color++) {
+                    int currentNeighborhoodsCreated = neighborhoodsCreated + (pos == 0 || prevColor != color ? 1 : 0);
+                    int next = minCost(currentNeighborhoodsCreated, color, pos + 1);
+                    if (next != -1)
+                        min = Math.min(min, cost[pos][color - 1] + next);
+                }
+            }
+
+            dp[pos][neighborhoodsCreated][prevColor] = min == Integer.MAX_VALUE ? -1 : min;
+
+            return dp[pos][neighborhoodsCreated][prevColor];
+        }
+    }
+
+    public static int paintHouseIIIBottomUp(int[] houses, int[][] cost, int m, int n, int target) {
+        if (target < 0)
+            return -1;
+        if (houses == null || houses.length == 0 || cost == null || cost.length == 0)
+            return target == 0 ? 0 : -1;
+        if (m != houses.length || m != cost.length || n != cost[0].length)
+            return -1;
+
+        int [][][] dp = new int[m + 1][target + 1][n + 1];
+
+        for (int prevColor = 0; prevColor <= n; prevColor++) {
+            dp[m][target][prevColor] = 0;
+            for (int neighborhoodsCreated = 0; neighborhoodsCreated < target; neighborhoodsCreated++)
+                dp[m][neighborhoodsCreated][prevColor] = -1;
+        }
+
+        for (int pos = m - 1; pos >= 0; pos--) {
+            for (int prevColor = 0; prevColor <= n; prevColor++) {
+                for (int neighborhoodsCreated = 0; neighborhoodsCreated <= target; neighborhoodsCreated++) {
+                    if (neighborhoodsCreated + m - pos < target) {
+                        dp[pos][neighborhoodsCreated][prevColor] = -1;
+                        continue;
+                    }
+
+                    if (houses[pos] != 0) {
+                        int color = houses[pos];
+                        int currentNeighborhoodsCreated = neighborhoodsCreated + (pos == 0 || prevColor != color ? 1 : 0);
+
+                        if (currentNeighborhoodsCreated > target) {
+                            dp[pos][neighborhoodsCreated][prevColor] = -1;
+                            continue;
+                        }
+
+                        dp[pos][neighborhoodsCreated][prevColor] = dp[pos + 1][currentNeighborhoodsCreated][color];;;
+                    } else {
+                        int min = Integer.MAX_VALUE;
+
+                        for (int color = 1; color <= n; color++) {
+                            int currentNeighborhoodsCreated = neighborhoodsCreated + (pos == 0 || prevColor != color ? 1 : 0);
+
+                            if (currentNeighborhoodsCreated > target)
+                                continue;
+
+                            int next = dp[pos + 1][currentNeighborhoodsCreated][color];
+                            if (next != -1)
+                                min = Math.min(min, cost[pos][color - 1] + next);
+                        }
+
+                        dp[pos][neighborhoodsCreated][prevColor] = min == Integer.MAX_VALUE ? -1 : min;
+                    }
+                }
+            }
+        }
+
+        return dp[0][0][0];
     }
 
     /**

@@ -4,48 +4,62 @@ import java.util.HashMap;
 
 public class DPAlgorithms2 {
     /**
-     * TODO
-     * leetcode https://leetcode.com/problems/maximum-repeating-substring/?envType=problem-list-v2&envId=dynamic-programming&difficulty=EASY
+     * https://leetcode.com/problems/maximum-repeating-substring
      * */
-    public static int maxRepeating_TODO(String sequence, String word) {
-        if (sequence == null || word == null) {
+    public static int maxRepeating(String sequence, String word) {
+        if (sequence == null || word == null || word.isEmpty() || sequence.length() < word.length())
             return 0;
-        }
 
-        int maxCount = 0;
+        int overallMax = 0;
 
-        for (int i = 0; i < word.length(); i++) {
-            maxCount = Math.max(maxCount, maxRepeating(sequence, word, i));
-        }
+        boolean[] dpMatches = new boolean[sequence.length() - word.length() + 1];
+        for (int i = 0; i < dpMatches.length; i++)
+            dpMatches[i] = findMatches(sequence, word, i);
 
-        return maxCount;
-    }
-
-    private static int maxRepeating(String sequence, String word, int sequenceStart) {
-        int maxCount = 0;
-        int count = 0;
-
-        for (int i = sequenceStart; i < sequence.length() - word.length() + 1;) {
-            if (maxRepeatingIsSubstring(sequence, word, i)) {
-                count++;
-                maxCount = Math.max(count, maxCount);
-                i = i + word.length();
-            } else {
-                i++;
-                count = 0;
+        for (int i = 0; i < dpMatches.length; i++) {
+            if (dpMatches[i]) {
+                int max = maxRepeating(sequence, word, i, dpMatches);
+                overallMax = Math.max(overallMax, max);
             }
         }
 
-        return maxCount;
+        return overallMax;
     }
 
-    private static boolean maxRepeatingIsSubstring(String sequence, String word, int sequencePos) {
-        for (int i = 0, j = sequencePos; i < word.length(); i++, j++) {
-            if (word.charAt(i) != sequence.charAt(j)) {
+    private static int maxRepeating(String sequence, String word, int pos, boolean[] matches) {
+        int max = 0;
+
+        while (pos < matches.length && matches[pos]) {
+            max++;
+            pos = pos + word.length();
+        }
+
+        return max;
+    }
+
+    private static boolean findMatches(String sequence, String word, int pos) {
+        int i = 0;
+
+        for (; i < word.length() && pos < sequence.length(); i++, pos++)
+            if (sequence.charAt(pos) != word.charAt(i))
                 return false;
-            }
+
+        return i == word.length();
+    }
+
+    public static int maxRepeating2(String sequence, String word) {
+        if (sequence == null || word == null || word.isEmpty() || sequence.length() < word.length())
+            return 0;
+
+        int overallMax = 0;
+        StringBuilder sb = new StringBuilder(word);
+
+        while (sequence.contains(sb)) {
+            sb.append(word);
+            overallMax++;
         }
-        return true;
+
+        return overallMax;
     }
 
     /**

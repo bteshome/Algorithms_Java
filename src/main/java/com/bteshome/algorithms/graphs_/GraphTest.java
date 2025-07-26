@@ -1,10 +1,12 @@
 package com.bteshome.algorithms.graphs_;
 
+import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms9;
 import com.bteshome.algorithms.graphs_.bfs.BFSAlgorithms3;
 import com.bteshome.algorithms.graphs_.bfs.BFSAlgorithms4;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms5;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms6;
 import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms7;
+import com.bteshome.algorithms.graphs_.dfs.DFSAlgorithms8;
 
 import java.util.List;
 
@@ -87,6 +89,10 @@ public class GraphTest {
                 new int[]{1, 0}
         }));*/
 
-        System.out.println(BFSAlgorithms4.canMeasureWater(2, 6, 5));
+        //System.out.println(BFSAlgorithms4.canMeasureWater(2, 6, 5));
+
+        System.out.println(DFSAlgorithms8.canReachDfs(new int[]{4,2,3,0,3,1,2}, 5));
+        System.out.println(DFSAlgorithms8.canReachDfs(new int[]{4,2,3,0,3,1,2}, 0));
+        System.out.println(DFSAlgorithms8.canReachDfs(new int[]{3,0,2,1,2}, 2));
     }
 }
