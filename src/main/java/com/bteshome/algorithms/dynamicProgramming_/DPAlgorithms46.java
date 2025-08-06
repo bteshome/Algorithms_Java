@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class DPAlgorithms46 {
-    private static final int MOD = ((int) Math.pow(10, 9)) + 7;
-
     public static class TreeNode {
         int val;
         TreeNode left;
@@ -25,48 +23,43 @@ public class DPAlgorithms46 {
      * https://leetcode.com/problems/maximum-product-of-splitted-binary-tree
      * NOTE: the DP part here is only the memoization of the sums
      * */
-    public static int maxProduct(TreeNode root) {
-        if (root == null)
-            return 0;
+    public static class MaxTreeProduct {
+        private static final long MOD = 1000000007;
+        private long max = 0;
 
-        Map<TreeNode, Integer> sums = new HashMap<>();
-        int totalSum = getSum(root, sums);
-        return (int)(maxProduct(root, sums, totalSum) % MOD);
-    }
+        public int maxProduct(TreeNode root) {
+            if (root == null)
+                return 0;
 
-    private static long maxProduct(TreeNode root, Map<TreeNode, Integer> sums, int totalSum) {
-        long max = 0;
+            Map<TreeNode, Integer> sums = new HashMap<>();
+            int totalSum = getSum(root, sums);
+            maxProduct(root, sums, totalSum);
 
-        if (root.left != null) {
-            long sum1 = sums.get(root.left);
-            long sum2 = totalSum - sum1;
-            max = sum1 * sum2;
-
-            max = Math.max(max, maxProduct(root.left, sums, totalSum));
+            return (int) (max * MOD);
         }
 
-        if (root.right != null) {
-            long sum1 = sums.get(root.right);
-            long sum2 = totalSum - sum1;
-            max = Math.max(max, sum1 * sum2);
-
-            max = Math.max(max, maxProduct(root.right, sums, totalSum));
+        public void maxProduct(TreeNode root, Map<TreeNode, Integer> sums, int totalSum) {
+            if (root.left != null) {
+                long leftSum = sums.get(root.left);
+                long rightSum = totalSum - leftSum;
+                max = Math.max(max, leftSum * rightSum);
+                maxProduct(root.left, sums, totalSum);
+            }
+            if (root.right != null) {
+                long rightSum = sums.get(root.right);
+                long leftSum = totalSum - rightSum;
+                max = Math.max(max, leftSum * rightSum);
+                maxProduct(root.right, sums, totalSum);
+            }
         }
 
-        return max;
-    }
-
-    private static int getSum(TreeNode root, Map<TreeNode, Integer> sums) {
-        int sum = root.val;
-
-        if (root.left != null)
-            sum += getSum(root.left, sums);
-        if (root.right != null)
-            sum += getSum(root.right, sums);
-
-        sums.put(root, sum);
-
-        return sum;
+        private int getSum(TreeNode node, Map<TreeNode, Integer> sums) {
+            if (node == null)
+                return 0;
+            int sum = getSum(node.left, sums) + getSum(node.right, sums) + node.val;
+            sums.put(node, sum);
+            return sum;
+        }
     }
 
     /**

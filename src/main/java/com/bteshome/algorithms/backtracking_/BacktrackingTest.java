@@ -1,9 +1,6 @@
 package com.bteshome.algorithms.backtracking_;
 
-import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms24;
-import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms41;
-import com.bteshome.algorithms.dynamicProgramming_.DPAlgorithms51;
-import com.bteshome.algorithms.dynamicProgramming_.DPwBitmask2;
+import com.bteshome.algorithms.dynamicProgramming_.*;
 
 import java.util.*;
 
@@ -110,10 +107,25 @@ public class BacktrackingTest {
         /*System.out.println(BacktrackingAlgorithms11.canPartitionKSubsets(new int[]{4,3,2,3,5,2,1}, 4));
         System.out.println(BacktrackingAlgorithms11.canPartitionKSubsets(new int[]{1,2,3,4}, 3));*/
 
-        System.out.println(new BacktrackingAlgorithms12.MaxScoreWords().maxScoreWords(
+        /*System.out.println(new BacktrackingAlgorithms12.MaxScoreWords().maxScoreWords(
                 new String[]{"dog","cat","dad","good"},
                 new char[]{'a','a','c','d','d','d','g','o','o'},
-                new int[]{1,0,9,5,0,0,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0}));
+                new int[]{1,0,9,5,0,0,3,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0}));*/
+
+        /*System.out.println(new BacktrackingAlgorithms12.MinimumTimeRequired().minimumTimeRequired(new int[]{3,2,3}, 3));
+        System.out.println(new BacktrackingAlgorithms12.MinimumTimeRequired().minimumTimeRequired(new int[]{1,2,4,7,8}, 2));*/
+
+        /*System.out.println(Arrays.toString(BacktrackingAlgorithms13.constructArray(3, 1)));
+        System.out.println(Arrays.toString(BacktrackingAlgorithms13.constructArray(3, 2)));*/
+
+        System.out.println(BacktrackingAlgorithms15.FairCutBruteforce.fairCut(2, List.of(4, 3, 1, 2)));
+        List<Integer> nums = List.of(
+                691259308, 801371251, 345390019, 162749471, 998969126,
+                308205008, 430442891, 404642721, 532566673, 266540863,
+                702197285, 749105392, 775025448, 20453591, 582291534,
+                132855413, 747557193, 129094259, 474372133, 788391070
+        );
+        System.out.println(BacktrackingAlgorithms15.FairCutBruteforce.fairCut(11, nums));
+
     }
 }
-

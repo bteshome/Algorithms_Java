@@ -4,35 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DPAlgorithms17 {
-    /**
-     * https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/
-     * */
-    public static int maximumScore(int[] nums, int[] multipliers) {
-        if (nums == null || multipliers == null)
-            return 0;
-        if (nums.length < multipliers.length)
-            return 0;
-
-        return maximumScore(nums, multipliers, 0, nums.length - 1, 0, new HashMap<>());
-    }
-
-    private static int maximumScore(int[] nums, int[] multipliers, int start, int end, int operation, Map<String, Integer> cache) {
-        if (operation == multipliers.length)
-            return 0;
-        if (start == end)
-            return nums[start] * multipliers[operation];
-
-        String key = "%s,%s,%s".formatted(start, end, operation);
-
-        if (!cache.containsKey(key)) {
-            int left = nums[start] * multipliers[operation] + maximumScore(nums, multipliers, start + 1, end, operation + 1, cache);
-            int right = nums[end] * multipliers[operation] + maximumScore(nums, multipliers, start, end - 1, operation + 1, cache);
-            cache.put(key, Math.max(left, right));
-        }
-
-        return cache.get(key);
-    }
-
     /* https://leetcode.com/problems/cherry-pickup/ */
     public static int cherryPickupTopDown(int[][] grid) {
         if (grid == null)

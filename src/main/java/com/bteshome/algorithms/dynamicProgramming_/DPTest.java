@@ -100,7 +100,7 @@ public class DPTest {
         System.out.println(DPAlgorithms11.paintHouseIITopDown(costs));
         System.out.println(DPAlgorithms11.paintHouseIIBottomUp(costs));*/
 
-        int[][] arr1 = new int[][]{
+        /*int[][] arr1 = new int[][]{
                 new int[]{1, 10},
                 new int[]{10, 1},
                 new int[]{10, 1},
@@ -154,7 +154,7 @@ public class DPTest {
                 4,
                 2,
                 4
-        ));
+        ));*/
 
         //System.out.println(DPAlgorithms11.paintFenceRecursiveTODO(7, 2));
 
@@ -184,8 +184,6 @@ public class DPTest {
         //System.out.println(DPAlgorithms15.numberOfWays(6));
 
         //System.out.println(DPAlgorithms16.numDecodings("1*"));
-
-        //System.out.println(DPAlgorithms17.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6}));
 
         /*int[][] array1 = {
                 {0, 1, -1},
@@ -217,6 +215,13 @@ public class DPTest {
 
         /*System.out.println(DPAlgorithms18.canCross(new int[]{0,1,3,5,6,8,12,17}));
         System.out.println(DPAlgorithms18.canCross(new int[]{0,1,2,3,4,8,9,11}));*/
+
+        /*System.out.println(DPAlgorithms18.canIWinTopDown(10, 11));
+        System.out.println(DPAlgorithms18.canIWinTopDown(10, 0));
+        System.out.println(DPAlgorithms18.canIWinTopDown(10, 1));
+        System.out.println(DPAlgorithms18.canIWinTopDownSlow(10, 11));
+        System.out.println(DPAlgorithms18.canIWinTopDownSlow(10, 0));
+        System.out.println(DPAlgorithms18.canIWinTopDownSlow(10, 1));*/
 
         /*System.out.println(DPAlgorithms19.minDifficulty(new int[]{6,5,4,3,2,1}, 2));
         System.out.println(DPAlgorithms19.minDifficulty(new int[]{9, 9, 9}, 4));
@@ -271,15 +276,15 @@ public class DPTest {
         //System.out.println(DPAlgorithms24.bestTeamScore(new int[]{1,3,5,10,15}, new int[]{1,2,3,4,5}));
         //System.out.println(DPAlgorithms24.bestTeamScore(new int[]{4,5,6,5}, new int[]{2,1,2,1}));
 
-        //System.out.println(DPAlgorithms25.profitableSchemes(5, 3, new int[]{2,2}, new int[]{2,3}));
-        //System.out.println(DPAlgorithms25.profitableSchemes(10, 5, new int[]{2,3,5}, new int[]{6,7,8}));
+        /*System.out.println(DPAlgorithms25.tallestBillboardUsingDiffAndArrayWithPruning(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms25.tallestBillboardUsingDiffAndArrayWithPruning(new int[]{251,247,265,256,266,230,264,232,242,246,251}));
+        System.out.println(DPAlgorithms25.tallestBillboardUsingDiffAndArrayWithPruning(new int[]{1,2}));
 
-        /*System.out.println(DPAlgorithms25.tallestBillboardInEfficient(new int[]{1,2,3,6}));
-        System.out.println(DPAlgorithms25.tallestBillboardInEfficient(new int[]{1,2,3,4,5,6}));
-        System.out.println(DPAlgorithms25.tallestBillboardInEfficient(new int[]{1,2}));
-        System.out.println(DPAlgorithms25.tallestBillboard(new int[]{1,2,3,6}));
-        System.out.println(DPAlgorithms25.tallestBillboard(new int[]{1,2,3,4,5,6}));
-        System.out.println(DPAlgorithms25.tallestBillboard(new int[]{1,2}));*/
+        System.out.println(DPAlgorithms25.tallestBillboardUsingDiffAndArray2(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms25.tallestBillboardUsingDiffAndArrayPLusMap(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms25.tallestBillboardUsingDiffAndMap(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms25.tallestBillboardUsingSumsAndArray(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms25.tallestBillboardUsingSumsAndMap(new int[]{1,2,3,4,5,6}));*/
 
         /*System.out.println(DPAlgorithms26.stoneGameTopDown(new int[]{5,3,4,5}));
         System.out.println(DPAlgorithms26.stoneGameTopDown(new int[]{3,7,2,3}));
@@ -544,8 +549,10 @@ public class DPTest {
 
         //System.out.println(DPAlgorithms53.findTargetSumWaysTopDown(new int[]{1,1,1,1,1}, 3));
 
-        /*System.out.println(DPAlgorithms53.canPartitionKSubsets(new int[]{4,3,2,3,5,2,1}, 4));
-        System.out.println(DPAlgorithms53.canPartitionKSubsets(new int[]{1,2,3,4}, 3));*/
+        /*System.out.println(DPAlgorithms53.canPartitionKSubsets_Approach1(new int[]{4,3,2,3,5,2,1}, 4));
+        System.out.println(DPAlgorithms53.canPartitionKSubsets_Approach1(new int[]{1,2,3,4}, 3));
+        System.out.println(DPAlgorithms53.canPartitionKSubsets_Approach2(new int[]{4,3,2,3,5,2,1}, 4));
+        System.out.println(DPAlgorithms53.canPartitionKSubsets_Approach2(new int[]{1,2,3,4}, 3));*/
 
         //System.out.println(DPAlgorithms54.largestNumberTopDown(new int[]{4,3,2,5,6,7,2,5,5}, 9));
 
@@ -573,5 +580,131 @@ public class DPTest {
         };
         System.out.println(DPAlgorithms56.maxTaxiEarningsTopDown(5, arr));
         System.out.println(DPAlgorithms56.maxTaxiEarningsTopDown(20, arr2));*/
+
+        // TODO - slow
+        //System.out.println(new DPAlgorithms56.GetMaxGridHappiness().getMaxGridHappiness(2, 3, 1, 2));
+
+        /*System.out.println(new DPAlgorithms57.MinimumTimeRequired().minimumTimeRequired(new int[]{3,2,3}, 3));
+        System.out.println(new DPAlgorithms57.MinimumTimeRequired().minimumTimeRequired(new int[]{1,2,4,7,8}, 2));*/
+
+        // TODO - use BFS
+        /*int[][] arr = {
+                {2, 5},
+                {3},
+                {0, 4, 5},
+                {1, 4, 5},
+                {2, 3},
+                {0, 2, 3}
+        };
+        int[][] arr2 = {
+                {1, 3},
+                {0},
+                {3},
+                {0, 2}
+        };
+        int[][] arr3 = {
+                {5, 6},
+                {3, 4},
+                {6},
+                {1, 4, 5},
+                {1, 3, 5},
+                {0, 3, 4, 6},
+                {0, 2, 5}
+        };
+        System.out.println(new DPAlgorithms57.CatMouseGameDFS().catMouseGame(arr));
+        System.out.println(new DPAlgorithms57.CatMouseGameDFS().catMouseGame(arr2));
+        System.out.println(new DPAlgorithms57.CatMouseGameDFS().catMouseGame(arr3));*/
+
+        /*System.out.println(DPAlgorithms59.makesquare(new int[]{1,1,2,2,2}));
+        System.out.println(DPAlgorithms59.makesquare(new int[]{3,3,3,3,4}));*/
+
+        /*String[] skills = new String[]{"java","nodejs","reactjs"};
+        List<List<String>> people = List.of(
+                List.of("java"),
+                List.of("nodejs"),
+                List.of("nodejs", "reactjs")
+        );
+        String[] skills2 = new String[]{"algorithms","math","java","reactjs","csharp","aws"};
+        List<List<String>> people2 = List.of(
+                List.of("algorithms", "math", "java"),
+                List.of("algorithms", "math", "reactjs"),
+                List.of("java", "csharp", "aws"),
+                List.of("reactjs", "csharp"),
+                List.of("csharp", "math"),
+                List.of("aws", "java")
+        );
+        System.out.println(Arrays.toString(new DPAlgorithms60.SmallestSufficientTeam().smallestSufficientTeam(skills, people)));
+        System.out.println(Arrays.toString(new DPAlgorithms60.SmallestSufficientTeam().smallestSufficientTeam(skills2, people2)));
+        System.out.println(Arrays.toString(new DPAlgorithms60.SmallestSufficientTeam_Slow().smallestSufficientTeam(skills, people)));
+        System.out.println(Arrays.toString(new DPAlgorithms60.SmallestSufficientTeam_Slow().smallestSufficientTeam(skills2, people2)));*/
+
+        /*System.out.println(DPAlgorithms61.maxScore1DWithArray(new int[]{1, 2}));
+        System.out.println(DPAlgorithms61.maxScore1DWithArray(new int[]{3,4,6,8}));
+        System.out.println(DPAlgorithms61.maxScore1DWithArray(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms61.maxScore1DWithMap(new int[]{1, 2}));
+        System.out.println(DPAlgorithms61.maxScore1DWithMap(new int[]{3,4,6,8}));
+        System.out.println(DPAlgorithms61.maxScore1DWithMap(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms61.maxScore2DWithMap(new int[]{1, 2}));
+        System.out.println(DPAlgorithms61.maxScore2DWithMap(new int[]{3,4,6,8}));
+        System.out.println(DPAlgorithms61.maxScore2DWithMap(new int[]{1,2,3,4,5,6}));
+        System.out.println(DPAlgorithms61.maxScore2DWithArray(new int[]{1, 2}));
+        System.out.println(DPAlgorithms61.maxScore2DWithArray(new int[]{3,4,6,8}));
+        System.out.println(DPAlgorithms61.maxScore2DWithArray(new int[]{1,2,3,4,5,6}));*/
+
+        /*List<Integer> arr = new ArrayList<>(List.of(1, 1, 5));
+        System.out.println(DPAlgorithms62.equal(arr));*/
+
+        /*System.out.println(DPAlgorithms62.countArrayTopDown(4, 3, 2));
+        System.out.println(DPAlgorithms62.countArrayBottomUp(4, 3, 2));
+        System.out.println(DPAlgorithms62.countArrayBottomUpSpaceOptimizedFaster(4, 3, 2));
+        System.out.println(DPAlgorithms62.countArrayBottomUp(17048, 14319, 1));
+        System.out.println(DPAlgorithms62.countArrayBottomUpSpaceOptimized(17048, 14319, 1));
+        System.out.println(DPAlgorithms62.countArrayBottomUpSpaceOptimizedFaster(17048, 14319, 1));
+        System.out.println(DPAlgorithms62.countArrayBottomUpSpaceOptimizedFaster(33260, 96055, 24745));*/
+
+        /*int[][] edges = {
+                {0, 1},
+                {0, 2},
+                {2, 3},
+                {2, 4},
+                {2, 5}
+        };
+        System.out.println(Arrays.toString(new DPAlgorithms64.SumOfDistancesInTreeBruteForce().sumOfDistancesInTree(6, edges)));
+        System.out.println(Arrays.toString(new DPAlgorithms64.SumOfDistancesInTreeWithRerooting().sumOfDistancesInTree(6, edges)));*/
+
+        /*System.out.println(new DPAlgorithms65.MinimumIncompatibility_MaskOnlyAsDPKey().minimumIncompatibility(new int[]{5,3,3,6,3,3}, 3));
+        System.out.println(new DPAlgorithms65.MinimumIncompatibility_AllStateVarsAsDPKey().minimumIncompatibility(new int[]{5,3,3,6,3,3}, 3));
+        System.out.println(new DPAlgorithms65.MinimumIncompatibility_Bruteforce().minimumIncompatibility(new int[]{5,3,3,6,3,3}, 3));
+        System.out.println(new DPAlgorithms65.MinimumIncompatibility_MaskOnlyAsDPKey().minimumIncompatibility(new int[]{1,2,1,4}, 2));
+        System.out.println(new DPAlgorithms65.MinimumIncompatibility_AllStateVarsAsDPKey().minimumIncompatibility(new int[]{1,2,1,4}, 2));
+        System.out.println(new DPAlgorithms65.MinimumIncompatibility_Bruteforce().minimumIncompatibility(new int[]{1,2,1,4}, 2));*/
+
+        /*List<List<Integer>> tree = List.of(
+                List.of(1, 2),
+                List.of(1, 3),
+                List.of(3, 4),
+                List.of(3, 5)
+        );
+        System.out.println(DPAlgorithms66.KingdomDivisionWithTreeDPTopDown.kingdomDivision(5, tree));
+        System.out.println(DPAlgorithms66.KingdomDivisionWithBacktrackingAndAndHashing.kingdomDivision(5, tree));
+        System.out.println(DPAlgorithms66.KingdomDivisionWithBacktrackingAndTreeSet.kingdomDivision(5, tree));*/
+
+        /*System.out.println(DPAlgorithms67.SamAndSubstrings.substrings("42"));
+        System.out.println(DPAlgorithms67.SamAndSubstrings.substrings("123"));*/
+
+        /*System.out.println(DPAlgorithms67.PrimeXor.primeXor(new ArrayList<>(List.of(3511, 3671, 4153))));
+        System.out.println(DPAlgorithms67.PrimeXor.primeXor(new ArrayList<>(List.of(3511, 3511, 3511, 3511))));*/
+
+        /*System.out.println(DPAlgorithms68.MinimumDifferenceBacktrackingUsingStringKey.minimumDifference(new int[]{7,9,5,8,1,3}));
+        System.out.println(DPAlgorithms68.MinimumDifferenceBacktrackingUsingEncodedKey.minimumDifference(new int[]{7,9,5,8,1,3}));*/
+
+        /*System.out.println(DPAlgorithms69.MaximumScoreTopDownUsingMap3D.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6}));
+        System.out.println(DPAlgorithms69.MaximumScoreTopDownUsingMap2D.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6}));
+        System.out.println(DPAlgorithms69.MaximumScoreTopDownUsingArray2D.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6}));
+        System.out.println(DPAlgorithms69.MaximumScoreBottomUp2D.maximumScore(new int[]{-5,-3,-3,-2,7,1}, new int[]{-10,-5,3,4,6}));*/
+
+        //System.out.println(DPAlgorithms70.profitableSchemes(5, 3, new int[]{2,2}, new int[]{2,3}));
+        //System.out.println(DPAlgorithms70.profitableSchemes(10, 5, new int[]{2,3,5}, new int[]{6,7,8}));
+
     }
 }

@@ -35,6 +35,33 @@ public class BacktrackingAlgorithms2 {
         nums[j] = temp;
     }
 
+    public static List<List<Integer>> permute1WithBitmask(int[] nums) {
+        int n = nums.length;
+        int mask = (1 << n) - 1;
+        List<List<Integer>> permutations = new ArrayList<>();
+        Integer[] permutation = new Integer[n];
+
+        permute1WithBitmask(nums, 0, mask, permutations, permutation);
+
+        return permutations;
+    }
+
+    private static void permute1WithBitmask(int[] nums, int pos, int mask, List<List<Integer>> permutations, Integer[] permutation) {
+        if (pos == nums.length) {
+            permutations.add(Arrays.stream(permutation).toList());
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int numMask = 1 << i;
+            if ((mask & numMask) != 0) {
+                permutation[pos] = num;
+                permute1WithBitmask(nums, pos + 1, mask & ~numMask, permutations, permutation);
+            }
+        }
+    }
+
     /* https://leetcode.com/problems/permutations-ii */
     public static List<List<Integer>> permute2(int[] nums) {
         if (nums == null || nums.length == 0)

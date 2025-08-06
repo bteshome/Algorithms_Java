@@ -1,33 +1,83 @@
 package com.bteshome.algorithms.backtracking_;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BacktrackingAlgorithms4 {
     /**
      * https://leetcode.com/problems/subsets/description/?envType=problem-list-v2&envId=backtracking
-     * NOTE: checkout the bitmask solution as well, which is a bit faster (for nums.length <= 10)
+     * NOTE:
+     *  - the second solution is fater the first one
+     *  - also checkout the bitmask solution (for nums.length <= 20)
      * */
-    public static List<List<Integer>> subsets(int[] nums) {
-        var subsets = new ArrayList<List<Integer>>();
+    public static List<List<Integer>> subsetsApproach1(int[] nums) {
+        if (nums == null)
+            return List.of(List.of());
 
-        if (nums != null) {
-            subsets(nums, 0, subsets, new ArrayList<Integer>(nums.length));
-        }
+        List<List<Integer>> subsets = new ArrayList<List<Integer>>();
+        subsetsApproach1(nums, 0, subsets, new ArrayList<Integer>(nums.length));
 
         return subsets;
     }
 
-    private static void subsets(int[] nums, int pos, ArrayList<List<Integer>> subsets, List<Integer> subset) {
+    private static void subsetsApproach1(int[] nums, int pos, List<List<Integer>> subsets, List<Integer> subset) {
         if (pos == nums.length) {
             subsets.add(subset.stream().toList());
             return;
         }
 
         subset.addLast(nums[pos]);
-        subsets(nums, pos + 1, subsets, subset);
+        subsetsApproach1(nums, pos + 1, subsets, subset);
         subset.removeLast();
-        subsets(nums, pos + 1, subsets, subset);
+        subsetsApproach1(nums, pos + 1, subsets, subset);
+    }
+
+    public List<List<Integer>> subsetsApproach2(int[] nums) {
+        if (nums == null)
+            return List.of(List.of());
+
+        List<List<Integer>> subsets = new ArrayList<>();
+        subsetsApproach2(nums, 0, subsets, new ArrayList<>());
+
+        return subsets;
+    }
+
+    private static void subsetsApproach2(int[] nums, int start, List<List<Integer>> subsets, List<Integer> subset) {
+        subsets.add(new ArrayList<>(subset));
+
+        for (int i = start; i < nums.length; i++) {
+            subset.add(nums[i]);
+            subsetsApproach2(nums, i + 1, subsets, subset);
+            subset.removeLast();
+        }
+    }
+
+    /**
+     * https://leetcode.com/problems/subsets-ii/
+     * */
+    public static List<List<Integer>> subsetsWithDup(int[] nums) {
+        if (nums == null)
+            return List.of(List.of());
+
+        List<List<Integer>> subsets = new ArrayList<>();
+
+        Arrays.sort(nums);
+        subsetsWithDup(nums, 0, subsets, new ArrayList<>());
+
+        return subsets;
+    }
+
+    private static void subsetsWithDup(int[] nums, int start, List<List<Integer>> subsets, List<Integer> subset) {
+        subsets.add(new ArrayList<>(subset));
+
+        for (int i = start; i < nums.length; i++) {
+            if (i > start && nums[i] == nums[i - 1])
+                continue;
+            subset.add(nums[i]);
+            subsetsWithDup(nums, i + 1, subsets, subset);
+            subset.removeLast();
+        }
     }
 
     /**

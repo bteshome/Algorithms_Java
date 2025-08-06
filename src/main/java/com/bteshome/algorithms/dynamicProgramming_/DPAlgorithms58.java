@@ -2,7 +2,7 @@ package com.bteshome.algorithms.dynamicProgramming_;
 
 import java.util.*;
 
-public class DPwBitmask {
+public class DPAlgorithms58 {
     private static final int MOD = (int) Math.pow(10, 9) + 7;
 
     /**
